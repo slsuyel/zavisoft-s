@@ -5,8 +5,15 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Container from "@/components/Common/Container";
 import ProductCard from "./ProductCard";
+import { useGetProductsQuery } from "../Redux/RTK/productApi";
+import { TProduct } from "@/constants/product.type";
 
 const RelatedProducts = () => {
+  const { data: products, isLoading } = useGetProductsQuery({
+    offset: 0,
+    limit: 14,
+  });
+  console.log(products);
   // 1. Initialize Embla with specific options
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
@@ -20,44 +27,6 @@ const RelatedProducts = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(true);
-
-  const products = [
-    {
-      id: 1,
-      name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "125",
-      image: "/assets/adidas-1.png",
-      tag: "New",
-    },
-    {
-      id: 2,
-      name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "125",
-      image: "/assets/adidas-2.png",
-      tag: "New",
-    },
-    {
-      id: 3,
-      name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "125",
-      image: "/assets/adidas-3.png",
-      tag: "New",
-    },
-    {
-      id: 4,
-      name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "125",
-      image: "/assets/adidas-4.png",
-      tag: "New",
-    },
-    {
-      id: 5,
-      name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-      price: "125",
-      image: "/assets/adidas-1.png",
-      tag: "New",
-    },
-  ];
 
   // 2. Navigation Logic
   const scrollPrev = useCallback(
@@ -82,9 +51,11 @@ const RelatedProducts = () => {
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);
   }, [emblaApi, onSelect]);
-
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
-    <section className="w-full py-12 md:py-20 bg-[#F5F5F5] font-['Rubik',_sans-serif] overflow-hidden">
+    <section className="w-full py-12 md:py-20 bg-[#F5F5F5]  overflow-hidden">
       <Container>
         {/* Header with Title and Slider Controls */}
         <div className="flex items-center justify-between mb-8 px-4 md:px-0">
@@ -121,17 +92,12 @@ const RelatedProducts = () => {
         {/* --- Functional Carousel Body --- */}
         <div className="overflow-hidden px-4 md:px-0" ref={emblaRef}>
           <div className="flex -ml-4">
-            {products.map((product) => (
+            {products.map((product: TProduct) => (
               <div
                 key={product.id}
                 className="flex-[0_0_85%] min-w-0 pl-4 sm:flex-[0_0_50%] lg:flex-[0_0_25%]"
               >
-                <ProductCard
-                  name={product.name}
-                  price={product.price}
-                  image={product.image}
-                  tag={product.tag}
-                />
+                <ProductCard product={product} />
               </div>
             ))}
           </div>
