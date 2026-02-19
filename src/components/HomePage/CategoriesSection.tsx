@@ -4,7 +4,7 @@ import Container from "@/components/Common/Container";
 
 const CategoriesSection = () => {
   return (
-    <section className="w-full py-16 md:py-24 bg-[#232321] text-white font-['Rubik',_sans-serif]">
+    <section className="w-full py-16 md:py-24 bg-[#232321] text-white ">
       <Container>
         <div className="flex items-center justify-between mb-10 px-4 md:px-0">
           <h2 className="text-4xl md:text-[74px] font-bold uppercase leading-none">
