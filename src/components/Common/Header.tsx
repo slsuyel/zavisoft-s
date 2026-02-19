@@ -26,7 +26,7 @@ const Header = () => {
           {/* --- DESKTOP: Navigation --- */}
           <nav className="hidden md:flex items-center gap-8 flex-1">
             <Link
-              href="#"
+              href="/products"
               className="font-bold text-sm lg:text-base flex items-center gap-1 hover:text-blue-600 transition-colors"
             >
               New Drops <Flame size={16} className="text-orange-500" />
@@ -124,7 +124,7 @@ const Header = () => {
 
           <nav className="flex flex-col gap-6">
             <Link
-              href="#"
+              href="/products"
               className="text-lg font-bold flex items-center gap-2"
             >
               New Drops <Flame size={18} className="text-orange-500" />

@@ -2,6 +2,7 @@
 import React from "react";
 import { Trash2, Heart, ChevronDown } from "lucide-react";
 import Container from "@/components/Common/Container";
+import RelatedProducts from "@/components/ProductPage/RelatedProducts";
 
 const CartPage = () => {
   const cartItems = [
@@ -13,7 +14,7 @@ const CartPage = () => {
       size: 10,
       quantity: 1,
       price: 130.0,
-      image: "/assets/adidas.png", // Use the shoe asset you have
+      image: "/assets/adidas.png",
     },
   ];
 
@@ -22,32 +23,35 @@ const CartPage = () => {
   const total = subtotal + delivery;
 
   return (
-    <div className="bg-[#F5F5F5] min-h-screen py-10 ">
+    <div className="bg-[#F5F5F5] min-h-screen py-6 md:py-10 ">
       <Container>
         {/* Header Promo Section */}
-        <div className="mb-10 px-4 md:px-0">
-          <h1 className="text-2xl md:text-3xl font-bold text-[#232321] mb-2">
+        <div className="mb-8 md:mb-12 px-4 md:px-0">
+          <h1 className="text-2xl md:text-[32px] font-bold text-[#232321] mb-3 uppercase tracking-tight">
             Saving to celebrate
           </h1>
-          <p className="text-sm text-gray-500 max-w-2xl leading-relaxed">
+          <p className="text-sm md:text-base text-gray-500 max-w-2xl leading-relaxed font-medium">
             Enjoy up to 60% off thousands of styles during the End of Year sale
-            - while supplies last. No code needed. <br />
-            <span className="font-bold underline cursor-pointer">
+            - while supplies last. No code needed.{" "}
+            <br className="hidden md:block" />
+            <span className="font-bold text-[#232321] underline cursor-pointer hover:text-[#437EF7]">
               Join us
             </span>{" "}
             or{" "}
-            <span className="font-bold underline cursor-pointer">Sign-in</span>
+            <span className="font-bold text-[#232321] underline cursor-pointer hover:text-[#437EF7]">
+              Sign-in
+            </span>
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 px-4 md:px-0">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 px-4 md:px-0 items-start">
           {/* --- LEFT: YOUR BAG (8/12 cols) --- */}
-          <div className="lg:col-span-8 space-y-4">
-            <div className="bg-white rounded-[24px] md:rounded-[32px] p-6 md:p-8 shadow-sm">
-              <h2 className="text-2xl font-bold text-[#232321] mb-2">
+          <div className="lg:col-span-8">
+            <div className="bg-white rounded-[24px] md:rounded-[32px] p-6 md:p-10 shadow-sm border border-gray-100">
+              <h2 className="text-2xl md:text-[28px] font-bold text-[#232321] mb-2 uppercase">
                 Your Bag
               </h2>
-              <p className="text-xs text-gray-400 mb-8 uppercase tracking-wider font-medium">
+              <p className="text-xs md:text-sm text-gray-400 mb-8 uppercase tracking-widest font-semibold">
                 Items in your bag not reserved - check out now to make them
                 yours.
               </p>
@@ -55,59 +59,63 @@ const CartPage = () => {
               {cartItems.map((item) => (
                 <div
                   key={item.id}
-                  className="flex flex-col md:flex-row gap-6 py-6 border-b border-gray-100 last:border-0"
+                  className="flex flex-col md:flex-row gap-6 lg:gap-8 py-8 border-b border-gray-100 last:border-0"
                 >
-                  {/* Item Image */}
-                  <div className="w-full md:w-48 aspect-square bg-[#ECEEF0] rounded-[24px] overflow-hidden shrink-0">
+                  {/* Item Image with Figma Padding */}
+                  <div className="w-full md:w-56 aspect-square bg-[#ECEEF0] rounded-[24px] md:rounded-[32px] overflow-hidden shrink-0 flex items-center justify-center p-6">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-full h-full object-contain p-4"
+                      className="w-full h-full object-contain transform group-hover:scale-110 transition-transform"
                     />
                   </div>
 
                   {/* Item Details */}
-                  <div className="flex-1 flex flex-col justify-between">
-                    <div className="flex justify-between items-start">
+                  <div className="flex-1 flex flex-col justify-between pt-2">
+                    <div className="flex justify-between items-start gap-4">
                       <div>
-                        <h3 className="text-xl font-bold text-[#232321] mb-1">
+                        <h3 className="text-lg md:text-2xl font-black text-[#232321] mb-1 leading-tight uppercase tracking-tight">
                           {item.name}
                         </h3>
-                        <p className="text-sm text-gray-500 font-medium">
+                        <p className="text-sm md:text-base text-gray-400 font-bold uppercase tracking-wide">
                           {item.category}
                         </p>
-                        <p className="text-sm text-gray-500">{item.color}</p>
+                        <p className="text-sm md:text-base text-gray-400 font-bold uppercase tracking-wide">
+                          {item.color}
+                        </p>
                       </div>
-                      <p className="text-xl font-bold text-[#437EF7]">
+                      <p className="text-lg md:text-2xl font-black text-[#437EF7]">
                         ${item.price.toFixed(2)}
                       </p>
                     </div>
 
-                    <div className="mt-6 flex flex-wrap items-center gap-6">
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-bold text-[#232321]">
+                    <div className="mt-8 flex flex-wrap items-center gap-8">
+                      <div className="flex items-center gap-3">
+                        <span className="text-sm font-black text-[#232321] uppercase">
                           Size
                         </span>
-                        <button className="flex items-center gap-1 text-sm font-medium border border-gray-200 rounded-lg px-2 py-1">
-                          {item.size} <ChevronDown size={14} />
+                        <button className="flex items-center gap-2 text-sm font-bold border-2 border-gray-100 rounded-xl px-4 py-2 hover:border-[#437EF7] transition-all">
+                          {item.size}{" "}
+                          <ChevronDown size={16} className="text-gray-400" />
                         </button>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-bold text-[#232321]">
+                      <div className="flex items-center gap-3">
+                        <span className="text-sm font-black text-[#232321] uppercase">
                           Quantity
                         </span>
-                        <button className="flex items-center gap-1 text-sm font-medium border border-gray-200 rounded-lg px-2 py-1">
-                          {item.quantity} <ChevronDown size={14} />
+                        <button className="flex items-center gap-2 text-sm font-bold border-2 border-gray-100 rounded-xl px-4 py-2 hover:border-[#437EF7] transition-all">
+                          {item.quantity}{" "}
+                          <ChevronDown size={16} className="text-gray-400" />
                         </button>
                       </div>
                     </div>
 
-                    <div className="mt-6 flex gap-4">
-                      <button className="hover:text-[#437EF7] transition-colors">
-                        <Heart size={20} />
+                    <div className="mt-8 flex gap-6">
+                      <button className="text-[#232321] hover:text-[#437EF7] transition-colors p-1">
+                        <Heart size={24} />
                       </button>
-                      <button className="hover:text-red-500 transition-colors">
-                        <Trash2 size={20} />
+                      <button className="text-[#232321] hover:text-red-500 transition-colors p-1">
+                        <Trash2 size={24} />
                       </button>
                     </div>
                   </div>
@@ -117,48 +125,51 @@ const CartPage = () => {
           </div>
 
           {/* --- RIGHT: ORDER SUMMARY (4/12 cols) --- */}
-          <div className="lg:col-span-4 space-y-6">
-            <div className="bg-transparent p-2">
-              <h2 className="text-2xl font-bold text-[#232321] mb-6">
+          <div className="lg:col-span-4">
+            <div className="bg-white md:bg-transparent p-6 md:p-0 rounded-[24px] md:rounded-none">
+              <h2 className="text-2xl md:text-[28px] font-bold text-[#232321] mb-8 uppercase tracking-tight">
                 Order Summary
               </h2>
 
-              <div className="space-y-4 font-medium">
-                <div className="flex justify-between text-sm">
-                  <span className="text-[#232321] uppercase tracking-wider">
-                    1 Item
+              <div className="space-y-5">
+                <div className="flex justify-between text-base font-bold uppercase tracking-wide">
+                  <span className="text-[#232321]">1 Item</span>
+                  <span className="text-[#232321] font-black">
+                    ${subtotal.toFixed(2)}
                   </span>
-                  <span className="text-[#232321]">${subtotal.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-[#232321] uppercase tracking-wider">
-                    Delivery
+                <div className="flex justify-between text-base font-bold uppercase tracking-wide">
+                  <span className="text-[#232321]">Delivery</span>
+                  <span className="text-[#232321] font-black">
+                    ${delivery.toFixed(2)}
                   </span>
-                  <span className="text-[#232321]">${delivery.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-[#232321] uppercase tracking-wider">
-                    Sales Tax
-                  </span>
-                  <span className="text-[#232321]">-</span>
+                <div className="flex justify-between text-base font-bold uppercase tracking-wide">
+                  <span className="text-[#232321]">Sales Tax</span>
+                  <span className="text-[#232321] font-black">-</span>
                 </div>
-                <div className="flex justify-between text-xl font-bold pt-4 border-t border-gray-200">
-                  <span className="text-[#232321]">Total</span>
+
+                <div className="flex justify-between text-2xl font-black pt-6 border-t-2 border-gray-200 mt-6">
+                  <span className="text-[#232321] uppercase">Total</span>
                   <span className="text-[#232321]">${total.toFixed(2)}</span>
                 </div>
               </div>
 
-              <button className="w-full bg-[#232321] text-white py-5 rounded-xl font-bold uppercase text-xs tracking-[0.2em] mt-8 hover:bg-black transition-all active:scale-95 shadow-lg">
+              <button className="w-full bg-[#232321] text-white py-5 rounded-2xl font-black uppercase text-sm tracking-[0.2em] mt-10 hover:bg-black transition-all active:scale-95 shadow-xl">
                 Checkout
               </button>
 
-              <button className="w-full text-[#232321] py-4 text-xs font-bold uppercase underline underline-offset-4 mt-4 tracking-wider">
+              <button className="w-full text-[#232321] py-4 text-xs font-black uppercase underline underline-offset-8 mt-6 tracking-[0.1em] hover:text-[#437EF7] transition-colors">
                 Use a promo code
               </button>
             </div>
           </div>
         </div>
       </Container>
+
+      <div className="">
+        <RelatedProducts />
+      </div>
     </div>
   );
 };

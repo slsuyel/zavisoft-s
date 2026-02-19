@@ -1,5 +1,6 @@
 import Container from "@/components/Common/Container";
 import React from "react";
+import ProductCard from "../ProductPage/ProductCard";
 
 const NewDrops = () => {
   const products = [
@@ -53,34 +54,7 @@ const NewDrops = () => {
         {/* Product Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {products.map((product) => (
-            <div key={product.id} className="flex flex-col gap-4">
-              {/* Image Card */}
-              <div className="relative aspect-square bg-white rounded-[24px] md:rounded-[32px] p-4 border-[6px] border-white overflow-hidden group">
-                {/* Status Tag */}
-                <div
-                  className={`absolute top-0 left-0 ${product.color} text-white px-4 py-2 rounded-br-2xl text-xs font-bold uppercase`}
-                >
-                  {product.tag}
-                </div>
-
-                <img
-                  src={`/assets/adidas.png`}
-                  alt={product.name}
-                  className="w-full h-full object-contain  transition-transform duration-300"
-                />
-              </div>
-
-              {/* Product Info */}
-              <div className="flex flex-col gap-3">
-                <h3 className="font-bold text-sm md:text-xl uppercase leading-tight text-[#232321]">
-                  {product.name}
-                </h3>
-                <button className="w-full bg-[#232321] text-[#FFA52F] py-3 md:py-4 rounded-xl font-bold text-xs md:text-sm uppercase tracking-widest hover:bg-black transition-colors">
-                  View Product —{" "}
-                  <span className="text-white">${product.price}</span>
-                </button>
-              </div>
-            </div>
+            <ProductCard key={product.id} {...product} />
           ))}
         </div>
       </Container>

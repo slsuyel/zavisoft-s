@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Heart, ChevronLeft, ChevronRight } from "lucide-react";
 import Container from "@/components/Common/Container";
+import RelatedProducts from "@/components/ProductPage/RelatedProducts";
 
 const ProductPage = () => {
   const [selectedSize, setSelectedSize] = useState(38);
@@ -162,6 +163,7 @@ const ProductPage = () => {
           </div>
         </div>
       </Container>
+      <RelatedProducts />
     </div>
   );
 };
