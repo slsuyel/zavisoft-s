@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const ProductPage = () => {
   const { slug } = useParams();
@@ -40,7 +41,52 @@ const ProductPage = () => {
   }, [api]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="bg-[#F5F5F5] min-h-screen py-10">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 px-4 md:px-0">
+            {/* Left Column Skeleton */}
+            <div className="lg:col-span-7">
+              <div className="hidden md:grid grid-cols-2 gap-4 rounded-[48px] overflow-hidden">
+                {[...Array(4)].map((_, i) => (
+                  <Skeleton
+                    key={i}
+                    className="aspect-square w-full rounded-[32px] bg-gray-200"
+                  />
+                ))}
+              </div>
+              <div className="md:hidden relative aspect-square rounded-[32px] overflow-hidden">
+                <Skeleton className="w-full h-full bg-gray-200" />
+              </div>
+            </div>
+
+            {/* Right Column Skeleton */}
+            <div className="lg:col-span-5 space-y-6">
+              <div className="space-y-4">
+                <Skeleton className="h-6 w-24 rounded-lg bg-gray-200" />
+                <Skeleton className="h-10 w-3/4 bg-gray-200" />
+                <Skeleton className="h-8 w-1/4 bg-gray-200" />
+              </div>
+
+              <div className="flex gap-2 pt-4">
+                <Skeleton className="flex-1 h-14 rounded-xl bg-gray-200" />
+                <Skeleton className="h-14 w-14 rounded-xl bg-gray-200" />
+              </div>
+              <Skeleton className="w-full h-14 rounded-xl bg-gray-200" />
+
+              <div className="pt-6 space-y-4">
+                <Skeleton className="h-4 w-1/3 bg-gray-200" />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-full bg-gray-200" />
+                  <Skeleton className="h-4 w-full bg-gray-200" />
+                  <Skeleton className="h-4 w-2/3 bg-gray-200" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
+    );
   }
 
   if (error) {
