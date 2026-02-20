@@ -4,10 +4,11 @@ import React, { useState } from "react";
 import { Menu, X, Search, User, ChevronDown, Flame } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useAppSelector } from "../Redux/hooks";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const { items } = useAppSelector((state) => state.cart);
   return (
     <>
       <header className="w-full px-4 py-4 md:py-8 bg-[#F5F5F5]">
@@ -95,7 +96,7 @@ const Header = () => {
 
             <Link href="/cart">
               <button className="relative cursor-pointer flex items-center justify-center w-7 h-7 md:w-8 md:h-8 bg-[#FFA52F] rounded-full text-black font-bold text-xs hover:scale-105 transition-transform">
-                0
+                {items.length}
               </button>
             </Link>
           </div>

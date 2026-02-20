@@ -1,26 +1,45 @@
 "use client";
 import React from "react";
-import { Trash2, Heart, ChevronDown } from "lucide-react";
+import { Trash2, Heart, ChevronDown, Minus, Plus } from "lucide-react";
 import Container from "@/components/Common/Container";
 import RelatedProducts from "@/components/ProductPage/RelatedProducts";
+import { useAppDispatch, useAppSelector } from "@/components/Redux/hooks";
+import {
+  removeFromCart,
+  updateQuantity,
+} from "@/components/Redux/Slice/cartSlice";
+import Link from "next/link";
+import Image from "next/image";
 
 const CartPage = () => {
-  const cartItems = [
-    {
-      id: 1,
-      name: "DROPSET TRAINER SHOES",
-      category: "Men's Road Running Shoes",
-      color: "Enamel Blue/ University White",
-      size: 10,
-      quantity: 1,
-      price: 130.0,
-      image: "/assets/adidas.png",
-    },
-  ];
+  const { items, totalAmount } = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
 
-  const subtotal = 130.0;
   const delivery = 6.99;
-  const total = subtotal + delivery;
+  const total = totalAmount + delivery;
+
+  if (items.length === 0) {
+    return (
+      <div className="bg-[#F5F5F5] min-h-screen py-6 md:py-10 flex flex-col items-center justify-center">
+        <Container>
+          <div className="flex flex-col items-center justify-center gap-6 text-center">
+            <h2 className="text-2xl md:text-4xl font-bold text-[#232321] uppercase tracking-tight">
+              Your Bag is Empty
+            </h2>
+            <p className="text-gray-500 max-w-md">
+              Looks like you haven't added anything to your bag yet. Start
+              shopping to fill it up!
+            </p>
+            <Link href="/">
+              <button className="bg-[#232321] text-white px-8 py-3 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-black transition-colors">
+                Start Shopping
+              </button>
+            </Link>
+          </div>
+        </Container>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-[#F5F5F5] min-h-screen py-6 md:py-10 ">
@@ -56,15 +75,17 @@ const CartPage = () => {
                 yours.
               </p>
 
-              {cartItems.map((item) => (
+              {items.map((item) => (
                 <div
-                  key={item.id}
+                  key={item.variantId}
                   className="flex flex-col md:flex-row gap-6 lg:gap-8 py-8 border-b border-gray-100 last:border-0"
                 >
                   {/* Item Image with Figma Padding */}
                   <div className="w-full md:w-56 aspect-square bg-[#ECEEF0] rounded-[24px] md:rounded-[32px] overflow-hidden shrink-0 flex items-center justify-center p-6">
-                    <img
-                      src={item.image}
+                    <Image
+                      width={200}
+                      height={200}
+                      src={item.image || "/assets/placeholder.png"}
                       alt={item.name}
                       className="w-full h-full object-contain transform group-hover:scale-110 transition-transform"
                     />
@@ -77,12 +98,9 @@ const CartPage = () => {
                         <h3 className="text-lg md:text-2xl font-black text-[#232321] mb-1 leading-tight uppercase tracking-tight">
                           {item.name}
                         </h3>
-                        <p className="text-sm md:text-base text-gray-400 font-bold uppercase tracking-wide">
-                          {item.category}
-                        </p>
-                        <p className="text-sm md:text-base text-gray-400 font-bold uppercase tracking-wide">
-                          {item.color}
-                        </p>
+                        {/* <p className="text-sm md:text-base text-gray-400 font-bold uppercase tracking-wide">
+                          {item.category.name}
+                        </p> */}
                       </div>
                       <p className="text-lg md:text-2xl font-black text-[#437EF7]">
                         ${item.price.toFixed(2)}
@@ -90,23 +108,47 @@ const CartPage = () => {
                     </div>
 
                     <div className="mt-8 flex flex-wrap items-center gap-8">
-                      <div className="flex items-center gap-3">
-                        <span className="text-sm font-black text-[#232321] uppercase">
-                          Size
-                        </span>
-                        <button className="flex items-center gap-2 text-sm font-bold border-2 border-gray-100 rounded-xl px-4 py-2 hover:border-[#437EF7] transition-all">
-                          {item.size}{" "}
-                          <ChevronDown size={16} className="text-gray-400" />
-                        </button>
-                      </div>
+                      {/* Quantity Control */}
                       <div className="flex items-center gap-3">
                         <span className="text-sm font-black text-[#232321] uppercase">
                           Quantity
                         </span>
-                        <button className="flex items-center gap-2 text-sm font-bold border-2 border-gray-100 rounded-xl px-4 py-2 hover:border-[#437EF7] transition-all">
-                          {item.quantity}{" "}
-                          <ChevronDown size={16} className="text-gray-400" />
-                        </button>
+                        <div className="flex items-center gap-2 text-sm font-bold border-2 border-gray-100 rounded-xl px-2 py-1">
+                          <button
+                            onClick={() => {
+                              if (item.quantity > 1) {
+                                dispatch(
+                                  updateQuantity({
+                                    productId: item.productId,
+                                    variantId: item.variantId,
+                                    quantity: item.quantity - 1,
+                                  }),
+                                );
+                              }
+                            }}
+                            className="p-1 hover:text-[#437EF7] disabled:opacity-50"
+                            disabled={item.quantity <= 1}
+                          >
+                            <Minus size={16} />
+                          </button>
+                          <span className="w-4 text-center">
+                            {item.quantity}
+                          </span>
+                          <button
+                            onClick={() => {
+                              dispatch(
+                                updateQuantity({
+                                  productId: item.productId,
+                                  variantId: item.variantId,
+                                  quantity: item.quantity + 1,
+                                }),
+                              );
+                            }}
+                            className="p-1 hover:text-[#437EF7]"
+                          >
+                            <Plus size={16} />
+                          </button>
+                        </div>
                       </div>
                     </div>
 
@@ -114,7 +156,17 @@ const CartPage = () => {
                       <button className="text-[#232321] hover:text-[#437EF7] transition-colors p-1">
                         <Heart size={24} />
                       </button>
-                      <button className="text-[#232321] hover:text-red-500 transition-colors p-1">
+                      <button
+                        onClick={() =>
+                          dispatch(
+                            removeFromCart({
+                              productId: item.productId,
+                              variantId: item.variantId,
+                            }),
+                          )
+                        }
+                        className="text-[#232321] hover:text-red-500 transition-colors p-1"
+                      >
                         <Trash2 size={24} />
                       </button>
                     </div>
@@ -133,9 +185,11 @@ const CartPage = () => {
 
               <div className="space-y-5">
                 <div className="flex justify-between text-base font-bold uppercase tracking-wide">
-                  <span className="text-[#232321]">1 Item</span>
+                  <span className="text-[#232321]">
+                    {items.reduce((acc, item) => acc + item.quantity, 0)} Items
+                  </span>
                   <span className="text-[#232321] font-black">
-                    ${subtotal.toFixed(2)}
+                    ${totalAmount.toFixed(2)}
                   </span>
                 </div>
                 <div className="flex justify-between text-base font-bold uppercase tracking-wide">
@@ -159,7 +213,7 @@ const CartPage = () => {
                 Checkout
               </button>
 
-              <button className="w-full text-[#232321] py-4 text-xs font-black uppercase underline underline-offset-8 mt-6 tracking-[0.1em] hover:text-[#437EF7] transition-colors">
+              <button className="w-full text-[#232321] py-4 text-xs font-black uppercase underline underline-offset-8 mt-6 tracking-widest hover:text-[#437EF7] transition-colors">
                 Use a promo code
               </button>
             </div>

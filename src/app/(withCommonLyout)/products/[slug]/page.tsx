@@ -16,12 +16,16 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
+import { addToCart } from "@/components/Redux/Slice/cartSlice";
+import { useAppDispatch } from "@/components/Redux/hooks";
+import { toast } from "sonner";
 
 const ProductPage = () => {
   const { slug } = useParams();
   const { data, isLoading, error } = useGetProductBySlugQuery(slug);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const dispatch = useAppDispatch();
 
   const product: TProduct = data;
   const [selectedSize, setSelectedSize] = useState(38);
@@ -40,6 +44,22 @@ const ProductPage = () => {
       setCurrent(api.selectedScrollSnap() + 1);
     });
   }, [api]);
+
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        productId: product.id,
+        name: product.title,
+        image: product.images[0],
+        variantId: product.id.toString(),
+        price: product.price,
+        quantity: 1,
+      }),
+    );
+    toast.success(`${product?.title} added to cart`, {
+      position: "top-right",
+    });
+  };
 
   if (isLoading) {
     return (
@@ -262,7 +282,10 @@ const ProductPage = () => {
 
             {/* Actions */}
             <div className="flex gap-2 pt-4">
-              <button className="flex-1 bg-[#232321] text-white py-4 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-black transition-colors">
+              <button
+                onClick={() => handleAddToCart()}
+                className="flex-1 cursor-pointer bg-[#232321] text-white py-4 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-black transition-colors"
+              >
                 Add to Cart
               </button>
               <button className="bg-[#232321] text-white p-4 rounded-xl hover:bg-black transition-colors">
