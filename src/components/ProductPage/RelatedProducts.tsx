@@ -55,7 +55,7 @@ const RelatedProducts = () => {
     return (
       <section className="w-full py-12 md:py-20 bg-[#E7E7E3] overflow-hidden">
         <Container>
-          <div className="flex items-center justify-between mb-8 px-4 md:px-0">
+          <div className="flex items-center justify-between mb-6 md:mb-8 px-4 md:px-0">
             <Skeleton className="h-8 md:h-12 w-48 md:w-64 rounded-lg bg-gray-200" />
             <div className="flex gap-2">
               <Skeleton className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-gray-200" />
@@ -86,19 +86,20 @@ const RelatedProducts = () => {
     );
   }
   return (
-    <section className="w-full py-12 md:py-20 bg-[#E7E7E3]  overflow-hidden">
+    <section className="w-full py-6 md:py-10 bg-[#E7E7E3] overflow-hidden">
       <Container>
-        {/* Header with Title and Slider Controls */}
-        <div className="flex items-center justify-between mb-8 px-4 md:px-0">
-          <h2 className="text-[32px] md:text-[48px] font-bold text-[#232321] tracking-tight uppercase">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4 md:mb-8 px-4 md:px-0">
+          <h2 className="text-[24px] md:text-[48px] font-bold text-[#232321]">
             You may also like
           </h2>
 
-          <div className="flex gap-2">
+          {/* Desktop Controls Only */}
+          <div className="hidden md:flex gap-2">
             <button
               onClick={scrollPrev}
               disabled={!canScrollPrev}
-              className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-lg transition-all ${
+              className={`w-12 h-12 flex items-center justify-center rounded-lg transition-all ${
                 canScrollPrev
                   ? "bg-[#232321] text-white hover:bg-black"
                   : "bg-gray-200 text-gray-400 cursor-not-allowed"
@@ -106,10 +107,11 @@ const RelatedProducts = () => {
             >
               <ChevronLeft size={24} />
             </button>
+
             <button
               onClick={scrollNext}
               disabled={!canScrollNext}
-              className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-lg transition-all ${
+              className={`w-12 h-12 flex items-center justify-center rounded-lg transition-all ${
                 canScrollNext
                   ? "bg-[#232321] text-white hover:bg-black"
                   : "bg-gray-200 text-gray-400 cursor-not-allowed"
@@ -120,21 +122,27 @@ const RelatedProducts = () => {
           </div>
         </div>
 
-        {/* --- Functional Carousel Body --- */}
-        <div className="overflow-hidden px-4 md:px-0" ref={emblaRef}>
-          <div className="flex -ml-4">
-            {products.map((product: TProduct) => (
-              <div
-                key={product.id}
-                className="flex-[0_0_85%] min-w-0 pl-4 sm:flex-[0_0_50%] lg:flex-[0_0_25%]"
-              >
-                <ProductCard product={product} />
-              </div>
+        <div className="px-4 md:px-0">
+          {/* ============ 📱 Mobile Grid (Figma Style) ============ */}
+          <div className="grid grid-cols-2 gap-4 md:hidden">
+            {products.slice(0, 4).map((product: TProduct) => (
+              <ProductCard key={product.id} product={product} />
             ))}
+          </div>
+
+          {/* ============ 💻 Desktop Carousel ============ */}
+          <div className="hidden md:block overflow-hidden" ref={emblaRef}>
+            <div className="flex -ml-4">
+              {products.map((product: TProduct) => (
+                <div key={product.id} className="flex-[0_0_25%] min-w-0 pl-4">
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Functional Pagination Indicator */}
+        {/* Desktop Pagination */}
         <div className="hidden md:flex justify-center mt-12 gap-2">
           {emblaApi?.scrollSnapList().map((_, index) => (
             <div

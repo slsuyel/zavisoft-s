@@ -79,10 +79,10 @@ const CartPage = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12  md:gap-11  items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12  md:gap-11  space-y-6 items-center px-4">
           {/* --- LEFT: YOUR BAG (8/12 cols) --- */}
           <div className="lg:col-span-8">
-            <div className="bg-[#FAFAFA] rounded-[16px] p-6  border border-gray-100">
+            <div className="bg-[#FAFAFA]  rounded-[16px] p-4 md:p-6  border border-gray-100">
               <h2 className="text-2xl md:text-[28px] font-bold text-[#232321] mb-2 ">
                 Your Bag
               </h2>
@@ -123,7 +123,7 @@ const CartPage = () => {
                       </p>
                     </div>
 
-                    <div className="mt-8 flex flex-wrap items-center gap-8">
+                    <div className=" mt-2 md:mt-8 flex flex-wrap items-center gap-8">
                       <div className="flex items-center gap-3">
                         {/* Label */}
                         <span className="text-sm md:text-base font-medium text-[#232321] opacity-80">
@@ -184,12 +184,13 @@ const CartPage = () => {
                       </div>
                     </div>
 
-                    <div className="mt-8 flex gap-6">
+                    <div className="mt-2 md:mt-8 flex gap-6">
                       <button className="text-[#232321] hover:text-[#437EF7] transition-colors p-1">
                         <svg
                           width="32"
                           height="32"
                           viewBox="0 0 32 32"
+                          className="w-6 h-6 md:w-8 md:h-8"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
                         >
@@ -211,12 +212,13 @@ const CartPage = () => {
                             }),
                           )
                         }
-                        className="text-[#232321] hover:text-red-500 transition-colors p-1"
+                        className="text-[#232321] cursor-pointer hover:text-red-500 transition-colors p-1"
                       >
                         <svg
                           width="32"
                           height="32"
                           viewBox="0 0 32 32"
+                          className="w-6 h-6 md:w-8 md:h-8"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
                         >
@@ -251,43 +253,45 @@ const CartPage = () => {
           </div>
 
           {/* --- RIGHT: ORDER SUMMARY (4/12 cols) --- */}
-          <div className="lg:col-span-4">
-            <div className="bg-white md:bg-transparent p-6 md:p-0 rounded-[24px] md:rounded-none">
-              <h2 className="text-2xl md:text-[28px] font-bold text-[#232321] mb-8 uppercase tracking-tight">
+          <div className="lg:col-span-4 ">
+            <div className="bg-[#FAFAFA]  md:bg-transparent p-4 md:p-6 rounded-[16px] md:rounded-none">
+              <h2 className="text-xl md:text-[32x] font-bold text-[#232321] mb-4 md:mb-6 uppercase tracking-tight">
                 Order Summary
               </h2>
 
-              <div className="space-y-5">
-                <div className="flex justify-between text-base font-bold uppercase tracking-wide">
-                  <span className="text-[#232321]">
+              <div className="space-y-4">
+                {/* Items */}
+                <div className="flex justify-between text-base font-semibold uppercase text-[#232321]">
+                  <span>
                     {items.reduce((acc, item) => acc + item.quantity, 0)} Items
                   </span>
-                  <span className="text-[#232321] font-black">
-                    ${totalAmount.toFixed(2)}
-                  </span>
-                </div>
-                <div className="flex justify-between text-base font-bold uppercase tracking-wide">
-                  <span className="text-[#232321]">Delivery</span>
-                  <span className="text-[#232321] font-black">
-                    ${delivery.toFixed(2)}
-                  </span>
-                </div>
-                <div className="flex justify-between text-base font-bold uppercase tracking-wide">
-                  <span className="text-[#232321]">Sales Tax</span>
-                  <span className="text-[#232321] font-black">-</span>
+                  <span>${totalAmount.toFixed(2)}</span>
                 </div>
 
-                <div className="flex justify-between text-2xl font-black pt-6 border-t-2 border-gray-200 mt-6">
-                  <span className="text-[#232321] uppercase">Total</span>
-                  <span className="text-[#232321]">${total.toFixed(2)}</span>
+                {/* Delivery */}
+                <div className="flex justify-between text-base font-semibold uppercase text-[#232321]">
+                  <span>Delivery</span>
+                  <span>${delivery.toFixed(2)}</span>
+                </div>
+
+                {/* Sales Tax */}
+                <div className="flex justify-between text-base font-semibold uppercase text-[#232321]">
+                  <span>Sales Tax</span>
+                  <span>-</span>
+                </div>
+
+                {/* Total */}
+                <div className="flex justify-between text-xl font-semibold uppercase text-[#232321]">
+                  <span>Total</span>
+                  <span>${total.toFixed(2)}</span>
                 </div>
               </div>
 
-              <button className="w-full cursor-pointer bg-[#232321] text-white py-5 rounded-2xl font-black uppercase text-sm tracking-[0.2em] mt-10 hover:bg-black transition-all active:scale-95 shadow-xl">
-                Checkout
+              <button className="w-full max-w-[418px] h-[48px] flex items-center justify-center mt-4 md:mt-6 px-4 py-2 bg-[#232321] text-white rounded-[8px] font-black uppercase text-sm tracking-[0.2em] hover:bg-black transition-all active:scale-95 shadow-xl">
+                <span>Checkout</span>
               </button>
 
-              <button className="w-full text-[#232321] py-4 text-xs font-black uppercase underline underline-offset-8 mt-6 tracking-widest hover:text-[#437EF7] transition-colors">
+              <button className="w-full text-[#232321] py-4 text-base md:text-xl font-black  flex justify-start underline underline-offset-8  md:py-6 tracking-widest hover:text-[#437EF7] transition-colors">
                 Use a promo code
               </button>
             </div>
