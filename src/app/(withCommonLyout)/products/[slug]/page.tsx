@@ -3,19 +3,27 @@ import React, { useState } from "react";
 import { Heart, ChevronLeft, ChevronRight } from "lucide-react";
 import Container from "@/components/Common/Container";
 import RelatedProducts from "@/components/ProductPage/RelatedProducts";
+import { useParams } from "next/navigation";
+import { useGetProductBySlugQuery } from "@/components/Redux/RTK/productApi";
+import { TProduct } from "@/constants/product.type";
 
 const ProductPage = () => {
+  const { slug } = useParams();
+  const { data, isLoading, error } = useGetProductBySlugQuery(slug);
+
+  const product: TProduct = data;
   const [selectedSize, setSelectedSize] = useState(38);
   const [selectedColor, setSelectedColor] = useState("navy");
 
-  const images = [
-    "/assets/adidas.png",
-    "/assets/adidas.png",
-    "/assets/adidas.png",
-    "/assets/adidas.png",
-  ];
-
   const sizes = [38, 39, 40, 41, 42, 43, 44, 45, 46, 47];
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error...</div>;
+  }
 
   return (
     <div className="bg-[#F5F5F5] min-h-screen py-10 ">
@@ -25,7 +33,7 @@ const ProductPage = () => {
           <div className="lg:col-span-7">
             {/* Desktop Grid Layout */}
             <div className="hidden md:grid grid-cols-2 gap-4">
-              {images.map((img, idx) => (
+              {product.images.map((img, idx) => (
                 <div
                   key={idx}
                   className="aspect-square bg-[#ECEEF0] rounded-[32px] overflow-hidden"
@@ -42,7 +50,7 @@ const ProductPage = () => {
             {/* Mobile Carousel View */}
             <div className="md:hidden relative aspect-square bg-[#ECEEF0] rounded-[32px] overflow-hidden">
               <img
-                src={images[0]}
+                src={product.images[0]}
                 alt="Product Main"
                 className="w-full h-full object-cover"
               />
@@ -54,10 +62,10 @@ const ProductPage = () => {
               </div>
               {/* Mobile Thumbnails below main image */}
               <div className="flex gap-2 mt-4 overflow-x-auto pb-2">
-                {images.map((img, idx) => (
+                {product.images.map((img, idx) => (
                   <div
                     key={idx}
-                    className="w-20 h-20 flex-shrink-0 bg-white rounded-xl overflow-hidden border-2 border-transparent hover:border-[#437EF7]"
+                    className="w-20 h-20 shrink-0 bg-white rounded-xl overflow-hidden border-2 border-transparent hover:border-[#437EF7]"
                   >
                     <img
                       src={img}
@@ -77,13 +85,15 @@ const ProductPage = () => {
                 New Release
               </span>
               <h1 className="text-3xl md:text-4xl font-bold text-[#232321] uppercase leading-tight">
-                ADIDAS 4DFWD X PARLEY RUNNING SHOES
+                {product.title}
               </h1>
-              <p className="text-[#437EF7] text-2xl font-bold">$125.00</p>
+              <p className="text-[#437EF7] text-2xl font-bold">
+                ${product.price}
+              </p>
             </div>
 
             {/* Color Selection */}
-            <div className="space-y-3">
+            {/* <div className="space-y-3">
               <h3 className="font-bold uppercase text-sm">Color</h3>
               <div className="flex gap-3">
                 <button
@@ -99,10 +109,10 @@ const ProductPage = () => {
                   <div className="w-full h-full bg-[#7C8B7A] rounded-full" />
                 </button>
               </div>
-            </div>
+            </div> */}
 
             {/* Size Selection */}
-            <div className="space-y-3">
+            {/* <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <h3 className="font-bold uppercase text-sm">Size</h3>
                 <button className="text-[10px] font-bold uppercase underline underline-offset-4">
@@ -124,7 +134,7 @@ const ProductPage = () => {
                   </button>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             {/* Actions */}
             <div className="flex gap-2 pt-4">
@@ -142,23 +152,10 @@ const ProductPage = () => {
             {/* Description */}
             <div className="pt-6 space-y-4">
               <h3 className="font-bold uppercase text-sm">About the product</h3>
-              <p className="text-gray-500 text-sm font-medium leading-relaxed">
-                Shadow Navy / Army Green
-              </p>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                This product is excluded from all promotional discounts and
-                offers.
-              </p>
-              <ul className="text-gray-500 text-sm space-y-2 list-disc pl-4">
-                <li>
-                  Pay over time in interest-free installments with Affirm,
-                  Klarna or Afterpay.
-                </li>
-                <li>
-                  Join adiClub to get unlimited free standard shipping, returns,
-                  & exchanges.
-                </li>
-              </ul>
+              <div
+                className="text-gray-500 text-sm font-medium leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: product.description }}
+              />
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import Container from "./Container";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -23,9 +24,15 @@ const Footer = () => {
             </div>
           </div>
           <div className="relative mt-8 md:mt-0">
-            <span className="text-7xl md:text-[160px] font-black text-white tracking-tighter">
-              KICKS
-            </span>
+            <div>
+              <Image
+                src={`/assets/logo-white.svg`}
+                alt="Branding"
+                width={100}
+                height={100}
+                className="w-full max-w-[1200px] h-auto object-contain translate-y-1/3 opacity-100"
+              />
+            </div>
             <span className="absolute top-2 -right-6 md:-right-12 text-[#FFA52F] text-4xl md:text-6xl font-bold">
               +
             </span>

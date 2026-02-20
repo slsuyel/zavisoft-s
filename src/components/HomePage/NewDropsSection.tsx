@@ -22,7 +22,7 @@ const NewDrops = () => {
           <h2 className="text-4xl md:text-7xl font-bold uppercase leading-[0.9] text-[#232321]">
             Don't miss out <br /> new drops
           </h2>
-          <Link href={"/products"}>
+          <Link href={"/"}>
             <button className="bg-[#437EF7] text-white px-6 py-4 rounded-lg font-bold uppercase text-sm tracking-wider hover:bg-blue-700 transition-all self-start md:self-auto">
               Shop New Drops
             </button>

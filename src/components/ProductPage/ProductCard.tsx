@@ -1,21 +1,7 @@
+import { TProduct } from "@/constants/product.type";
+import Link from "next/link";
 import React from "react";
 
-export interface TCategory {
-  id: number;
-  name: string;
-  image: string;
-  slug: string;
-}
-
-export interface TProduct {
-  id: number;
-  title: string;
-  slug: string;
-  price: number;
-  description: string;
-  category: TCategory;
-  images: string[];
-}
 const ProductCard = ({ product }: { product: TProduct }) => {
   return (
     <div className="flex flex-col gap-4 w-full max-w-[318px] ">
@@ -41,10 +27,12 @@ const ProductCard = ({ product }: { product: TProduct }) => {
         </h3>
 
         {/* Action Button with 16px rounding */}
-        <button className="w-full bg-[#232321] text-white py-4 rounded-2xl font-bold text-xs uppercase tracking-[0.15em] flex items-center justify-center gap-1 transition-all hover:bg-black active:scale-[0.98]">
-          View Product —{" "}
-          <span className="text-[#FFA52F]">${product.price}</span>
-        </button>
+        <Link href={`/products/${product.slug}`}>
+          <button className="w-full bg-[#232321] cursor-pointer text-white py-4 rounded-2xl font-bold text-xs uppercase tracking-[0.15em] flex items-center justify-center gap-1 transition-all hover:bg-black active:scale-[0.98]">
+            View Product —{" "}
+            <span className="text-[#FFA52F]">${product.price}</span>
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -1,8 +1,13 @@
+
+
+
 export interface TCategory {
   id: number;
   name: string;
-  image: string;
   slug: string;
+  image: string;
+  creationAt: string;   // ISO Date string
+  updatedAt: string;    // ISO Date string
 }
 
 export interface TProduct {
@@ -13,4 +18,6 @@ export interface TProduct {
   description: string;
   category: TCategory;
   images: string[];
+  creationAt: string;   // ISO Date string
+  updatedAt: string;    // ISO Date string
 }

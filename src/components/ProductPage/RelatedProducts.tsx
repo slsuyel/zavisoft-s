@@ -13,7 +13,6 @@ const RelatedProducts = () => {
     offset: 0,
     limit: 14,
   });
-  console.log(products);
   // 1. Initialize Embla with specific options
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",

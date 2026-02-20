@@ -36,7 +36,7 @@ const HeroSection = () => {
             <p className="text-white/90 text-lg mb-8">
               Nike introducing the new air max for everyone's comfort
             </p>
-            <Link href="/products" className="cursor-pointer">
+            <Link href="/" className="cursor-pointer">
               <button className="bg-[#437EF7] cursor-pointer text-white px-8 py-4 rounded-lg font-bold uppercase hover:bg-blue-700 transition-colors">
                 Shop Now
               </button>
