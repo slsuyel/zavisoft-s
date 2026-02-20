@@ -154,7 +154,21 @@ const CartPage = () => {
 
                     <div className="mt-8 flex gap-6">
                       <button className="text-[#232321] hover:text-[#437EF7] transition-colors p-1">
-                        <Heart size={24} />
+                        <svg
+                          width="32"
+                          height="32"
+                          viewBox="0 0 32 32"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M22.0581 5C18.0006 5 16.0006 9 16.0006 9C16.0006 9 14.0006 5 9.94314 5C6.64564 5 4.03439 7.75875 4.00064 11.0506C3.93189 17.8837 9.42126 22.7431 15.4381 26.8269C15.604 26.9397 15.8 27.0001 16.0006 27.0001C16.2013 27.0001 16.3973 26.9397 16.5631 26.8269C22.5794 22.7431 28.0688 17.8837 28.0006 11.0506C27.9669 7.75875 25.3556 5 22.0581 5V5Z"
+                            stroke="#232321"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
                       </button>
                       <button
                         onClick={() =>
@@ -167,7 +181,35 @@ const CartPage = () => {
                         }
                         className="text-[#232321] hover:text-red-500 transition-colors p-1"
                       >
-                        <Trash2 size={24} />
+                        <svg
+                          width="32"
+                          height="32"
+                          viewBox="0 0 32 32"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M27 9L25.2081 26.2337C25.1509 26.7203 24.917 27.169 24.5509 27.4946C24.1847 27.8201 23.7118 28 23.2219 28H8.77875C8.2888 28 7.8159 27.8201 7.44977 27.4946C7.08365 27.169 6.84976 26.7203 6.7925 26.2337L5 9"
+                            stroke="#232321"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M29 4H3C2.44772 4 2 4.44772 2 5V8C2 8.55228 2.44772 9 3 9H29C29.5523 9 30 8.55228 30 8V5C30 4.44772 29.5523 4 29 4Z"
+                            stroke="#232321"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M19.5 15L12.5 22M19.5 22L12.5 15"
+                            stroke="#232321"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
                       </button>
                     </div>
                   </div>
@@ -209,7 +251,7 @@ const CartPage = () => {
                 </div>
               </div>
 
-              <button className="w-full bg-[#232321] text-white py-5 rounded-2xl font-black uppercase text-sm tracking-[0.2em] mt-10 hover:bg-black transition-all active:scale-95 shadow-xl">
+              <button className="w-full cursor-pointer bg-[#232321] text-white py-5 rounded-2xl font-black uppercase text-sm tracking-[0.2em] mt-10 hover:bg-black transition-all active:scale-95 shadow-xl">
                 Checkout
               </button>
 
