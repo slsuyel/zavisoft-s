@@ -35,13 +35,22 @@ const CategoriesSection = () => {
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <section className="w-full py-16 md:py-24 bg-[#232321] text-white overflow-hidden">
+    <section className="w-full px-4 py-16 md:pb-0 md:pt-24 bg-[#232321] text-white overflow-hidden">
       <Container>
         {/* Main Wrapper with Left Offset (Agano) */}
-        <div className="md:ml-20 lg:ml-32">
+        <div className="md:ml-20">
           {/* Header Section */}
           <div className="flex items-center justify-between mb-10 pr-4 md:pr-0">
-            <h2 className="text-4xl md:text-[74px] font-bold uppercase leading-none tracking-tighter">
+            <h2
+              className="
+  font-rubik
+  font-semibold
+  uppercase
+  text-[24px] md:text-[74px]
+  leading-[100%] md:leading-[95%]
+  tracking-[0%]
+"
+            >
               Categories
             </h2>
             <div className="flex gap-2">
@@ -80,7 +89,7 @@ const CategoriesSection = () => {
                     className="relative group h-[500px] md:h-[600px] flex flex-col justify-end p-8 md:p-12 cursor-pointer "
                   >
                     {/* Shoe Image */}
-                    <div className="absolute inset-0 flex items-center justify-center p-12">
+                    <div className="absolute inset-0 flex items-center justify-center p-5 md:p-10">
                       <Image
                         width={500}
                         height={500}

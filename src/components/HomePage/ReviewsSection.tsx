@@ -31,11 +31,18 @@ const ReviewsSection = () => {
   ];
 
   return (
-    <section className="w-full py-16 md:py-24 bg-[#F5F5F5] ">
+    <section className="w-full py-16 md:py-24 bg-[#F5F5F5] font-rubik">
       <Container>
         {/* Header Section */}
         <div className="flex items-center justify-between mb-10 px-4 md:px-0">
-          <h2 className="text-4xl md:text-[74px] font-bold uppercase leading-none text-[#232321]">
+          <h2
+            className="  
+  font-semibold
+  uppercase
+  text-[24px] md:text-[74px]
+  leading-[100%] md:leading-[95%]
+  tracking-[0%]"
+          >
             Reviews
           </h2>
           <button className="bg-[#437EF7] text-white px-6 py-3 rounded-lg font-bold uppercase text-xs tracking-widest hover:bg-blue-700 transition-colors">
