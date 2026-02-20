@@ -22,7 +22,7 @@ const CartPage = () => {
     return (
       <div className="bg-[#E7E7E3] min-h-screen py-6 md:py-10 flex flex-col items-center justify-center font-rubik">
         <Container>
-          <div className="flex flex-col items-center justify-center gap-6 text-center">
+          <div className="flex flex-col items-center justify-center gap-6 text-center animate-fade-in">
             <h2 className="text-2xl md:text-4xl font-bold text-[#232321] uppercase tracking-tight">
               Your Bag is Empty
             </h2>
@@ -94,7 +94,7 @@ const CartPage = () => {
               {items.map((item) => (
                 <div
                   key={item.variantId}
-                  className="flex flex-col md:flex-row gap-6 lg:gap-8  border-b border-gray-100 last:border-0"
+                  className="flex flex-col md:flex-row gap-6 lg:gap-8  border-b border-gray-100 last:border-0 animate-fade-in-up"
                 >
                   {/* Item Image with Figma Padding */}
                   <div className="">
@@ -254,7 +254,7 @@ const CartPage = () => {
 
           {/* --- RIGHT: ORDER SUMMARY (4/12 cols) --- */}
           <div className="lg:col-span-4 ">
-            <div className="bg-[#FAFAFA]  md:bg-transparent p-4 md:p-6 rounded-[16px] md:rounded-none">
+            <div className="bg-[#FAFAFA]  md:bg-transparent p-4 md:p-6 rounded-[16px] md:rounded-none animate-fade-in">
               <h2 className="text-xl md:text-[32x] font-bold text-[#232321] mb-4 md:mb-6 uppercase tracking-tight">
                 Order Summary
               </h2>
@@ -287,7 +287,7 @@ const CartPage = () => {
                 </div>
               </div>
 
-              <button className="w-full max-w-[418px] h-[48px] flex items-center justify-center mt-4 md:mt-6 px-4 py-2 bg-[#232321] text-white rounded-[8px] font-black uppercase text-sm tracking-[0.2em] hover:bg-black transition-all active:scale-95 shadow-xl">
+              <button className="w-full max-w-[418px] h-[48px] flex items-center justify-center mt-4 md:mt-6 px-4 py-2 bg-[#232321] text-white rounded-[8px] font-black uppercase text-sm tracking-[0.2em] hover:bg-black hover:scale-[1.02] transition-all active:scale-95 shadow-xl">
                 <span>Checkout</span>
               </button>
 

@@ -5,7 +5,7 @@ import React from "react";
 
 const ProductCard = ({ product }: { product: TProduct }) => {
   return (
-    <div className="flex flex-col gap-4 w-full max-w-[318px]  font-rubik">
+    <div className="flex flex-col gap-4 w-full max-w-[318px]  font-rubik animate-fade-in-up">
       {/* Image Container with 28px rounding */}
       <div className="relative aspect-318/350  rounded-2xl md:rounded-[28px]  border-8 border-white overflow-hidden group">
         {/* Status Tag - Top Left */}
@@ -28,7 +28,7 @@ const ProductCard = ({ product }: { product: TProduct }) => {
           height={350}
           src={product.images[0]}
           alt={product.title}
-          className="w-full h-full object-cover transition-transform duration-500 ease-in-out rounded-tl-[12px]"
+          className="w-full h-full object-cover transition-transform duration-500 ease-in-out rounded-tl-[12px] group-hover:scale-110"
         />
       </div>
 
@@ -49,7 +49,7 @@ const ProductCard = ({ product }: { product: TProduct }) => {
             font-semibold uppercase
             text-[12px]
             rounded-[8px] md:rounded-[16px]
-            transition-all hover:bg-black active:scale-[0.98]
+            transition-all hover:bg-black hover:scale-[1.02] active:scale-[0.98]
             flex items-center justify-center
           "
           >

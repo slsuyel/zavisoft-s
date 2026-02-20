@@ -22,11 +22,11 @@ const NewDrops = () => {
       <Container>
         {/* Header with Title and Button */}
         <div className="flex items-center md:items-end justify-between mb-6 md:mb-12 gap-x-2 md:gap-6">
-          <h2 className="text-2xl md:text-7xl font-medium md:font-bold capitalize md:uppercase leading-[0.9] text-[#232321]">
+          <h2 className="text-2xl md:text-7xl font-medium md:font-bold capitalize md:uppercase leading-[0.9] text-[#232321] animate-fade-in-up">
             Don't miss out <br /> new drops
           </h2>
           <Link href={"/"}>
-            <button className="bg-[#437EF7] text-white px-4 md:px-6 py-2 md:py-4 rounded-lg font-medium md:font-bold uppercase text-sm tracking-wider hover:bg-blue-700 transition-all self-start md:self-auto">
+            <button className="bg-[#437EF7] text-white px-4 md:px-6 py-2 md:py-4 rounded-lg font-medium md:font-bold uppercase text-sm tracking-wider hover:bg-blue-700 hover:scale-105 transition-all self-start md:self-auto">
               Shop New Drops
             </button>
           </Link>

@@ -43,7 +43,7 @@ const Footer = () => {
     <footer className="w-full bg-[#E7E7E3] pt-10 ">
       <Container>
         {/* Blue Newsletter Card */}
-        <div className="bg-[#437EF7] rounded-t-[24px] md:rounded-t-[48px] p-4 pb-6 md:p-16 flex flex-col md:flex-row items-center justify-between relative z-20 mx-4 md:mx-0 font-rubik">
+        <div className="bg-[#437EF7] rounded-t-[24px] md:rounded-t-[48px] p-4 pb-6 md:p-16 flex flex-col md:flex-row items-center justify-between relative z-20 mx-4 md:mx-0 font-rubik animate-fade-in-up">
           <div className="max-w-xl mb-4 md:mb-10">
             <div className="">
               <h2 className="text-[32px] md:text-[48px] font-bold text-white leading-tight  md:uppercase px-4   mb-2 md:mb-4">
@@ -75,6 +75,7 @@ const Footer = () => {
       flex items-center justify-center
       bg-[#232321]
       hover:bg-black
+      hover:scale-105
       transition-all duration-300
       text-white
       font-bold uppercase

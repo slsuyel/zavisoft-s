@@ -41,6 +41,7 @@ const ReviewsSection = () => {
             uppercase
             text-[24px] md:text-[74px]
             leading-[100%] md:leading-[95%]
+            animate-fade-in-up
           "
           >
             Reviews
@@ -89,6 +90,8 @@ const ReviewsSection = () => {
       flex flex-col
       transition-transform duration-300
       hover:-translate-y-1
+      animate-fade-in-up
+      ${index === 1 ? "delay-200" : index === 2 ? "delay-400" : ""}
       ${index !== 0 ? "hidden md:flex" : ""}
     `}
             >
@@ -127,7 +130,7 @@ const ReviewsSection = () => {
                 <img
                   src={review.productImg}
                   alt="Review context"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
             </div>

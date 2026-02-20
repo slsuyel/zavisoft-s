@@ -145,7 +145,7 @@ const ProductPage = () => {
           {/* --- LEFT: IMAGE GRID (Desktop: 7/12 cols) --- */}
           <div className="lg:col-span-7">
             {/* Desktop Grid Layout */}
-            <div className="hidden md:grid grid-cols-2 gap-4  rounded-[48px] overflow-auto">
+            <div className="hidden md:grid grid-cols-2 gap-4  rounded-[48px] overflow-auto animate-fade-in">
               {product.images.map((img, idx) => (
                 <div
                   key={idx}
@@ -224,7 +224,7 @@ const ProductPage = () => {
           </div>
 
           {/* --- RIGHT: PRODUCT INFO (Desktop: 5/12 cols) --- */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-6 animate-fade-in-up">
             <div className="space-y-4">
               <span className="inline-block bg-[#437EF7] text-white text-[10px] font-bold  px-3 py-1 md:py-2 rounded-lg">
                 New Release
@@ -285,7 +285,7 @@ const ProductPage = () => {
             <div className="flex gap-2 pt-4">
               <button
                 onClick={() => handleAddToCart()}
-                className="flex-1 cursor-pointer bg-[#232321] text-white py-4 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-black transition-colors"
+                className="flex-1 cursor-pointer bg-[#232321] text-white py-4 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-black hover:scale-[1.02] transition-all"
               >
                 Add to Cart
               </button>
@@ -293,7 +293,7 @@ const ProductPage = () => {
                 <Heart size={20} />
               </button>
             </div>
-            <button className="w-full bg-[#437EF7] text-white py-4 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-blue-700 transition-colors">
+            <button className="w-full bg-[#437EF7] text-white py-4 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-blue-700 hover:scale-[1.02] transition-colors">
               Buy It Now
             </button>
 
