@@ -20,7 +20,7 @@ const CartPage = () => {
 
   if (items.length === 0) {
     return (
-      <div className="bg-[#E7E7E3] min-h-screen py-6 md:py-10 flex flex-col items-center justify-center">
+      <div className="bg-[#E7E7E3] min-h-screen py-6 md:py-10 flex flex-col items-center justify-center font-rubik">
         <Container>
           <div className="flex flex-col items-center justify-center gap-6 text-center">
             <h2 className="text-2xl md:text-4xl font-bold text-[#232321] uppercase tracking-tight">
@@ -42,14 +42,30 @@ const CartPage = () => {
   }
 
   return (
-    <div className="bg-[#E7E7E3] min-h-screen py-6 md:py-10 ">
+    <div className="bg-[#E7E7E3] min-h-screen  py-2 md:py-8 font-rubik">
       <Container>
         {/* Header Promo Section */}
         <div className="mb-8 md:mb-12 px-4 md:px-0">
-          <h1 className="text-2xl md:text-[32px] font-bold text-[#232321] mb-3 uppercase tracking-tight">
+          <h1
+            className="
+      font-rubik font-semibold
+      text-[24px] md:text-[32px]
+      leading-[100%]
+      tracking-[0%]
+      text-[#232321]
+      mb-3 uppercase
+    "
+          >
             Saving to celebrate
           </h1>
-          <p className="text-sm md:text-base text-gray-500 max-w-2xl leading-relaxed font-medium">
+          <p
+            className="
+      font-open-sans font-semibold
+      text-[12px] md:text-[14px]
+      text-[#232321] opacity-80
+
+    "
+          >
             Enjoy up to 60% off thousands of styles during the End of Year sale
             - while supplies last. No code needed.{" "}
             <br className="hidden md:block" />
@@ -63,14 +79,14 @@ const CartPage = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 px-4 md:px-0 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12  md:gap-11  items-center">
           {/* --- LEFT: YOUR BAG (8/12 cols) --- */}
           <div className="lg:col-span-8">
-            <div className="bg-white rounded-[24px] md:rounded-[32px] p-6 md:p-10 shadow-sm border border-gray-100">
-              <h2 className="text-2xl md:text-[28px] font-bold text-[#232321] mb-2 uppercase">
+            <div className="bg-[#FAFAFA] rounded-[16px] p-6  border border-gray-100">
+              <h2 className="text-2xl md:text-[28px] font-bold text-[#232321] mb-2 ">
                 Your Bag
               </h2>
-              <p className="text-xs md:text-sm text-gray-400 mb-8 uppercase tracking-widest font-semibold">
+              <p className="text-xs md:text-sm text-gray-400 mb-8  tracking-widest font-semibold">
                 Items in your bag not reserved - check out now to make them
                 yours.
               </p>
@@ -78,16 +94,16 @@ const CartPage = () => {
               {items.map((item) => (
                 <div
                   key={item.variantId}
-                  className="flex flex-col md:flex-row gap-6 lg:gap-8 py-8 border-b border-gray-100 last:border-0"
+                  className="flex flex-col md:flex-row gap-6 lg:gap-8  border-b border-gray-100 last:border-0"
                 >
                   {/* Item Image with Figma Padding */}
-                  <div className="w-full md:w-56 aspect-square bg-[#ECEEF0] rounded-[24px] md:rounded-[32px] overflow-hidden shrink-0 flex items-center justify-center p-6">
+                  <div className="">
                     <Image
                       width={200}
                       height={200}
                       src={item.image || "/assets/placeholder.png"}
                       alt={item.name}
-                      className="w-full h-full object-contain transform group-hover:scale-110 transition-transform"
+                      className="w-full h-full object-contain transform group-hover:scale-110 transition-transform rounded-[24px]"
                     />
                   </div>
 
@@ -95,12 +111,12 @@ const CartPage = () => {
                   <div className="flex-1 flex flex-col justify-between pt-2">
                     <div className="flex justify-between items-start gap-4">
                       <div>
-                        <h3 className="text-lg md:text-2xl font-black text-[#232321] mb-1 leading-tight uppercase tracking-tight">
+                        <h3 className="text-lg md:text-2xl font-semibold text-[#232321] mb-1 leading-tight uppercase tracking-tight">
                           {item.name}
                         </h3>
-                        {/* <p className="text-sm md:text-base text-gray-400 font-bold uppercase tracking-wide">
-                          {item.category.name}
-                        </p> */}
+                        <p className="text-sm md:text-base  line-clamp-2  opacity-80 text-[#232321]">
+                          {item.description}
+                        </p>
                       </div>
                       <p className="text-lg md:text-2xl font-black text-[#437EF7]">
                         ${item.price.toFixed(2)}
@@ -108,46 +124,62 @@ const CartPage = () => {
                     </div>
 
                     <div className="mt-8 flex flex-wrap items-center gap-8">
-                      {/* Quantity Control */}
                       <div className="flex items-center gap-3">
-                        <span className="text-sm font-black text-[#232321] uppercase">
+                        {/* Label */}
+                        <span className="text-sm md:text-base font-medium text-[#232321] opacity-80">
                           Quantity
                         </span>
-                        <div className="flex items-center gap-2 text-sm font-bold border-2 border-gray-100 rounded-xl px-2 py-1">
-                          <button
-                            onClick={() => {
-                              if (item.quantity > 1) {
-                                dispatch(
-                                  updateQuantity({
-                                    productId: item.productId,
-                                    variantId: item.variantId,
-                                    quantity: item.quantity - 1,
-                                  }),
-                                );
-                              }
-                            }}
-                            className="p-1 hover:text-[#437EF7] disabled:opacity-50"
-                            disabled={item.quantity <= 1}
-                          >
-                            <Minus size={16} />
-                          </button>
-                          <span className="w-4 text-center">
-                            {item.quantity}
-                          </span>
-                          <button
-                            onClick={() => {
+
+                        {/* Dropdown */}
+                        <div className="relative">
+                          <select
+                            value={item.quantity}
+                            onChange={(e) =>
                               dispatch(
                                 updateQuantity({
                                   productId: item.productId,
                                   variantId: item.variantId,
-                                  quantity: item.quantity + 1,
+                                  quantity: Number(e.target.value),
                                 }),
-                              );
-                            }}
-                            className="p-1 hover:text-[#437EF7]"
+                              )
+                            }
+                            className="
+          appearance-none
+          bg-[#F4F4F4]
+          text-[#232321]
+          text-sm md:text-base
+          font-medium
+          rounded-xl
+          px-4 pr-10 py-2
+          focus:outline-none
+          cursor-pointer
+        "
                           >
-                            <Plus size={16} />
-                          </button>
+                            {[...Array(10)].map((_, i) => (
+                              <option key={i + 1} value={i + 1}>
+                                {i + 1}
+                              </option>
+                            ))}
+                          </select>
+
+                          {/* Custom Arrow */}
+                          <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-[#232321]">
+                            <svg
+                              width="15"
+                              height="9"
+                              viewBox="0 0 15 9"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M0.75 0.75L7.5 7.5L14.25 0.75"
+                                stroke="#232321"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                          </div>
                         </div>
                       </div>
                     </div>

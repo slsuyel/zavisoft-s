@@ -22,7 +22,7 @@ import { toast } from "sonner";
 
 const ProductPage = () => {
   const { slug } = useParams();
-  const { data, isLoading, error } = useGetProductBySlugQuery(slug);
+  const { data, isLoading, error, isFetching } = useGetProductBySlugQuery(slug);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const dispatch = useAppDispatch();
@@ -50,6 +50,7 @@ const ProductPage = () => {
       addToCart({
         productId: product.id,
         name: product.title,
+        description: product.description,
         image: product.images[0],
         variantId: product.id.toString(),
         price: product.price,
@@ -61,7 +62,7 @@ const ProductPage = () => {
     });
   };
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return (
       <div className="bg-[#E7E7E3] min-h-screen py-10">
         <Container>
@@ -138,7 +139,7 @@ const ProductPage = () => {
   const displayImages = product?.images?.slice(0, 4) || [];
 
   return (
-    <div className="bg-[#E7E7E3] min-h-screen py-10 ">
+    <div className="bg-[#E7E7E3] min-h-screen py-10  font-rubik">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 px-4 md:px-0">
           {/* --- LEFT: IMAGE GRID (Desktop: 7/12 cols) --- */}
@@ -225,7 +226,7 @@ const ProductPage = () => {
           {/* --- RIGHT: PRODUCT INFO (Desktop: 5/12 cols) --- */}
           <div className="lg:col-span-5 space-y-6">
             <div className="space-y-4">
-              <span className="inline-block bg-[#437EF7] text-white text-[10px] font-bold uppercase px-3 py-1 rounded-lg">
+              <span className="inline-block bg-[#437EF7] text-white text-[10px] font-bold  px-3 py-1 md:py-2 rounded-lg">
                 New Release
               </span>
               <h1 className="text-3xl md:text-4xl font-bold text-[#232321] uppercase leading-tight">

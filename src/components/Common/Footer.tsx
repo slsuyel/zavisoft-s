@@ -1,4 +1,3 @@
-import { Facebook, Instagram, Twitter } from "lucide-react";
 import Container from "./Container";
 import Image from "next/image";
 
@@ -7,59 +6,86 @@ const Footer = () => {
     <footer className="w-full bg-[#E7E7E3] pt-10 ">
       <Container>
         {/* Blue Newsletter Card */}
-        <div className="bg-[#437EF7] rounded-t-[48px] p-8 md:p-16 flex flex-col md:flex-row items-center justify-between relative z-20 mx-4 md:mx-0 font-rubik">
-          <div className="max-w-xl mb-10">
+        <div className="bg-[#437EF7] rounded-t-[24px] md:rounded-t-[48px] p-4 md:p-16 flex flex-col md:flex-row items-center justify-between relative z-20 mx-4 md:mx-0 font-rubik">
+          <div className="max-w-xl mb-4 md:mb-10">
             <div className=" mb-4">
-              <h2 className="text-[32px] md:text-[48px] font-bold text-white leading-tight uppercase  ">
+              <h2 className="text-[32px] md:text-[48px] font-bold text-white leading-tight  md:uppercase  ">
                 Join our KicksPlus Club & get 15% off
               </h2>
               <p className=" text-[#E7E7E3] text-base md:text-xl">
                 Sign up for free! Join the community.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-2 max-w-md">
+            <div className="flex flex-row gap-3 w-full md:max-w-[420px]">
               <input
                 type="email"
                 placeholder="Email address"
-                className="bg-transparent border border-white/30 rounded-xl px-6 py-4 text-white placeholder:text-white/60 focus:outline-none flex-1"
+                className="
+      flex-1
+      bg-transparent
+      border border-white/30
+      rounded-xl
+      h-[40px] md:h-[48px]
+      px-4 md:px-6
+      text-white
+      placeholder:text-white/60
+      focus:outline-none
+    "
               />
-              <button className="bg-[#232321] cursor-pointer hover:bg-black transition-all duration-300 text-white px-8 py-4 rounded-xl font-bold uppercase">
+
+              <button
+                className="
+      flex items-center justify-center
+      bg-[#232321]
+      hover:bg-black
+      transition-all duration-300
+      text-white
+      font-bold uppercase
+      rounded-xl
+      h-[40px] md:h-[48px]
+      px-6 md:px-8
+      whitespace-nowrap
+    "
+              >
                 Submit
               </button>
             </div>
           </div>
-          <div className="">
-            <div>
+          {/* Logo and Plus Icon Section */}
+          <div className="relative flex items-center">
+            <div className="relative">
               <Image
-                src={`/assets/logo-white.svg`}
+                src="/assets/logo-white.svg"
                 alt="Branding"
                 width={315}
                 height={90}
-                className="w-full  h-auto object-contain  md:mt-4"
+                className="w-full h-auto object-contain md:mt-4"
               />
+              {/* Plus Icon Positioning */}
+              <span className="absolute -top-1 -right-4 md:top-0 md:-right-6">
+                <svg
+                  width="24"
+                  height="24"
+                  className="md:w-8 md:h-8" // মোবাইলে ছোট এবং বড় স্ক্রিনে বড় দেখাবে
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16 3.02344C23.1552 3.02344 28.9766 8.84482 28.9766 16C28.9766 23.1552 23.1552 28.9766 16 28.9766C8.84482 28.9766 3.02344 23.1552 3.02344 16C3.02344 8.84482 8.84482 3.02344 16 3.02344ZM16 9.97656C15.7286 9.97656 15.4683 10.0844 15.2764 10.2764C15.0844 10.4683 14.9766 10.7286 14.9766 11V14.9766H11C10.7286 14.9766 10.4683 15.0844 10.2764 15.2764C10.0844 15.4683 9.97656 15.7286 9.97656 16C9.97656 16.2714 10.0844 16.5317 10.2764 16.7236C10.4683 16.9156 10.7286 17.0234 11 17.0234H14.9766V21C14.9766 21.2714 15.0844 21.5317 15.2764 21.7236C15.4683 21.9156 15.7286 22.0234 16 22.0234C16.2714 22.0234 16.5317 21.9156 16.7236 21.7236C16.9156 21.5317 17.0234 21.2714 17.0234 21V17.0234H21C21.2714 17.0234 21.5317 16.9156 21.7236 16.7236C21.9156 16.5317 22.0234 16.2714 22.0234 16C22.0234 15.7286 21.9156 15.4683 21.7236 15.2764C21.5317 15.0844 21.2714 14.9766 21 14.9766H17.0234V11C17.0234 10.7286 16.9156 10.4683 16.7236 10.2764C16.5317 10.0844 16.2714 9.97656 16 9.97656Z"
+                    fill="#FFA52F"
+                    stroke="#FFA52F"
+                    strokeWidth="0.046875"
+                  />
+                </svg>
+              </span>
             </div>
-            <span className="absolute top-2 -right-6 md:-right-8 ">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16 3.02344C23.1552 3.02344 28.9766 8.84482 28.9766 16C28.9766 23.1552 23.1552 28.9766 16 28.9766C8.84482 28.9766 3.02344 23.1552 3.02344 16C3.02344 8.84482 8.84482 3.02344 16 3.02344ZM16 9.97656C15.7286 9.97656 15.4683 10.0844 15.2764 10.2764C15.0844 10.4683 14.9766 10.7286 14.9766 11V14.9766H11C10.7286 14.9766 10.4683 15.0844 10.2764 15.2764C10.0844 15.4683 9.97656 15.7286 9.97656 16C9.97656 16.2714 10.0844 16.5317 10.2764 16.7236C10.4683 16.9156 10.7286 17.0234 11 17.0234H14.9766V21C14.9766 21.2714 15.0844 21.5317 15.2764 21.7236C15.4683 21.9156 15.7286 22.0234 16 22.0234C16.2714 22.0234 16.5317 21.9156 16.7236 21.7236C16.9156 21.5317 17.0234 21.2714 17.0234 21V17.0234H21C21.2714 17.0234 21.5317 16.9156 21.7236 16.7236C21.9156 16.5317 22.0234 16.2714 22.0234 16C22.0234 15.7286 21.9156 15.4683 21.7236 15.2764C21.5317 15.0844 21.2714 14.9766 21 14.9766H17.0234V11C17.0234 10.7286 16.9156 10.4683 16.7236 10.2764C16.5317 10.0844 16.2714 9.97656 16 9.97656Z"
-                  fill="#FFA52F"
-                  stroke="#FFA52F"
-                  strokeWidth="0.046875"
-                />
-              </svg>
-            </span>
           </div>
         </div>
 
         {/* Black Links Section */}
-        <div className="bg-[#232321] rounded-[48px] -mt-16 pt-32 pb-8 px-8 md:px-16 text-white relative z-20">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
+        <div className="bg-[#232321] rounded-[48px] -mt-4 md:-mt-16 pt-32  px-8 md:px-16 text-white relative z-20">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-12 ">
             <div className=" col-span-2">
               <h3
                 className="
@@ -200,11 +226,11 @@ font-open-sans
           </div>
 
           {/* The Large Branding Image */}
-          <div className="w-full overflow-hidden flex justify-center">
+          <div className="w-full overflow-hidden flex justify-center mt-24">
             <img
               src="/assets/white-logo.png"
               alt="Branding"
-              className="w-full max-w-[1200px] h-auto object-contain translate-y-1/3 opacity-100"
+              className="w-full  h-auto object-contain  opacity-100"
             />
           </div>
         </div>
