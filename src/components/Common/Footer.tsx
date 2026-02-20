@@ -4,14 +4,19 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-[#F5F5F5] pt-10 ">
+    <footer className="w-full bg-[#E7E7E3] pt-10 ">
       <Container>
         {/* Blue Newsletter Card */}
-        <div className="bg-[#437EF7] rounded-[48px] p-8 md:p-16 flex flex-col md:flex-row items-center justify-between relative z-20 mx-4 md:mx-0">
-          <div className="max-w-xl">
-            <h2 className="text-4xl md:text-[64px] font-bold text-white leading-tight uppercase mb-6">
-              Join our KicksPlus Club & get 15% off
-            </h2>
+        <div className="bg-[#437EF7] rounded-t-[48px] p-8 md:p-16 flex flex-col md:flex-row items-center justify-between relative z-20 mx-4 md:mx-0 font-rubik">
+          <div className="max-w-xl mb-10">
+            <div className=" mb-4">
+              <h2 className="text-[32px] md:text-[48px] font-bold text-white leading-tight uppercase  ">
+                Join our KicksPlus Club & get 15% off
+              </h2>
+              <p className=" text-[#E7E7E3] text-base md:text-xl">
+                Sign up for free! Join the community.
+              </p>
+            </div>
             <div className="flex flex-col sm:flex-row gap-2 max-w-md">
               <input
                 type="email"
@@ -23,14 +28,14 @@ const Footer = () => {
               </button>
             </div>
           </div>
-          <div className="relative mt-8 md:mt-0">
+          <div className="">
             <div>
               <Image
                 src={`/assets/logo-white.svg`}
                 alt="Branding"
                 width={315}
                 height={90}
-                className="w-full max-w-[1200px] h-auto object-contain translate-y-1/3 opacity-100"
+                className="w-full  h-auto object-contain  md:mt-4"
               />
             </div>
             <span className="absolute top-2 -right-6 md:-right-8 ">
@@ -53,19 +58,44 @@ const Footer = () => {
         </div>
 
         {/* Black Links Section */}
-        <div className="bg-[#232321] rounded-[48px] -mt-16 pt-32 pb-8 px-8 md:px-16 text-white relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-            <div>
-              <h3 className="text-[#FFA52F] text-4xl font-rubik font-semibold mb-6 tracking-wide leading-none">
+        <div className="bg-[#232321] rounded-[48px] -mt-16 pt-32 pb-8 px-8 md:px-16 text-white relative z-20">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
+            <div className=" col-span-2">
+              <h3
+                className="
+  text-[#FFA52F]
+  font-rubik
+  font-semibold
+  text-[24px] md:text-[36px]
+  leading-[100%]
+  tracking-[0]
+  mb-6
+"
+              >
                 About us
               </h3>
-              <p className="text-xl  font-semibold text-gray-300 leading-none font-open-sans">
+              <p
+                className="
+font-open-sans
+  font-semibold
+  text-[16px] md:text-[20px]
+  text-gray-300
+"
+              >
                 We are the biggest hyperstore in the universe. We got you all
                 covered with exclusive collections and latest drops.
               </p>
             </div>
             <div>
-              <h3 className="text-[#FFA52F] text-4xl font-rubik font-semibold mb-6 tracking-wide leading-none">
+              <h3
+                className="text-[#FFA52F]
+  font-rubik
+  font-semibold
+  text-[20px] md:text-[24px]
+  leading-[100%]
+  tracking-[0]
+  mb-6"
+              >
                 Categories
               </h3>
               <ul className="space-y-3 text-xl  font-semibold text-gray-300 leading-none font-open-sans">
@@ -77,7 +107,15 @@ const Footer = () => {
             </div>
             {/* Company */}
             <div>
-              <h3 className="text-[#FFA52F] text-4xl font-rubik font-semibold mb-6 tracking-wide leading-none">
+              <h3
+                className="text-[#FFA52F]
+  font-rubik
+  font-semibold
+  text-[20px] md:text-[24px]
+  leading-[100%]
+  tracking-[0]
+  mb-6"
+              >
                 Company
               </h3>
               <ul className="space-y-3 text-xl  font-semibold text-gray-300 leading-none font-open-sans">
@@ -88,7 +126,15 @@ const Footer = () => {
             </div>
             {/* Follow */}
             <div>
-              <h3 className="text-[#FFA52F] text-4xl font-rubik font-semibold mb-6 tracking-wide leading-none">
+              <h3
+                className="text-[#FFA52F]
+  font-rubik
+  font-semibold
+  text-[20px] md:text-[24px]
+  leading-[100%]
+  tracking-[0]
+  mb-6"
+              >
                 Follow us
               </h3>
               <div className="flex gap-4">

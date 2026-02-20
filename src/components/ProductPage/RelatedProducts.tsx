@@ -53,7 +53,7 @@ const RelatedProducts = () => {
   }, [emblaApi, onSelect]);
   if (isLoading) {
     return (
-      <section className="w-full py-12 md:py-20 bg-[#F5F5F5] overflow-hidden">
+      <section className="w-full py-12 md:py-20 bg-[#E7E7E3] overflow-hidden">
         <Container>
           <div className="flex items-center justify-between mb-8 px-4 md:px-0">
             <Skeleton className="h-8 md:h-12 w-48 md:w-64 rounded-lg bg-gray-200" />
@@ -86,7 +86,7 @@ const RelatedProducts = () => {
     );
   }
   return (
-    <section className="w-full py-12 md:py-20 bg-[#F5F5F5]  overflow-hidden">
+    <section className="w-full py-12 md:py-20 bg-[#E7E7E3]  overflow-hidden">
       <Container>
         {/* Header with Title and Slider Controls */}
         <div className="flex items-center justify-between mb-8 px-4 md:px-0">

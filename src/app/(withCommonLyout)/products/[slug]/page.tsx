@@ -63,7 +63,7 @@ const ProductPage = () => {
 
   if (isLoading) {
     return (
-      <div className="bg-[#F5F5F5] min-h-screen py-10">
+      <div className="bg-[#E7E7E3] min-h-screen py-10">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 px-4 md:px-0">
             {/* Left Column Skeleton */}
@@ -112,7 +112,7 @@ const ProductPage = () => {
 
   if (error) {
     return (
-      <div className="bg-[#F5F5F5] min-h-screen flex items-center justify-center">
+      <div className="bg-[#E7E7E3] min-h-screen flex items-center justify-center">
         <Container>
           <div className="flex flex-col items-center justify-center gap-4 py-20 text-center">
             <div className="bg-red-50 p-6 rounded-full">
@@ -138,7 +138,7 @@ const ProductPage = () => {
   const displayImages = product?.images?.slice(0, 4) || [];
 
   return (
-    <div className="bg-[#F5F5F5] min-h-screen py-10 ">
+    <div className="bg-[#E7E7E3] min-h-screen py-10 ">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 px-4 md:px-0">
           {/* --- LEFT: IMAGE GRID (Desktop: 7/12 cols) --- */}

@@ -20,7 +20,7 @@ const CartPage = () => {
 
   if (items.length === 0) {
     return (
-      <div className="bg-[#F5F5F5] min-h-screen py-6 md:py-10 flex flex-col items-center justify-center">
+      <div className="bg-[#E7E7E3] min-h-screen py-6 md:py-10 flex flex-col items-center justify-center">
         <Container>
           <div className="flex flex-col items-center justify-center gap-6 text-center">
             <h2 className="text-2xl md:text-4xl font-bold text-[#232321] uppercase tracking-tight">
@@ -42,7 +42,7 @@ const CartPage = () => {
   }
 
   return (
-    <div className="bg-[#F5F5F5] min-h-screen py-6 md:py-10 ">
+    <div className="bg-[#E7E7E3] min-h-screen py-6 md:py-10 ">
       <Container>
         {/* Header Promo Section */}
         <div className="mb-8 md:mb-12 px-4 md:px-0">

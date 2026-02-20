@@ -5,7 +5,7 @@ import React from "react";
 
 const HeroSection = () => {
   return (
-    <section className="w-full px-4 md:px-8 bg-[#F5F5F5] font-rubik">
+    <section className="w-full px-4 md:px-8 bg-[#E7E7E3] font-rubik">
       {/* Heading Section */}
       <Container className="py-2 pb-4 md:py-20 text-center md:text-left ">
         <h1 className="text-6xl md:text-[223.5px] font-bold leading-[0.9] tracking-tighter uppercase ">

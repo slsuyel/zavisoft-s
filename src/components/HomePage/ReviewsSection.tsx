@@ -31,7 +31,7 @@ const ReviewsSection = () => {
   ];
 
   return (
-    <section className="w-full  md:pt-[90px] md:pb-[90px] bg-[#F5F5F5] font-rubik">
+    <section className="w-full  md:pt-[90px] md:pb-[90px] bg-[#E7E7E3] font-rubik">
       <Container>
         {/* Header */}
         <div className="flex items-center justify-between py-5 md:mb-[40px] px-4 md:px-0">

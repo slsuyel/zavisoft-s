@@ -12,7 +12,7 @@ const Header = () => {
   const { items } = useAppSelector((state) => state.cart);
   return (
     <>
-      <header className="w-full px-4 py-4 md:py-8 bg-[#F5F5F5]">
+      <header className="w-full px-4 py-4 md:py-8 bg-[#E7E7E3]">
         <Container>
           <div className="bg-white rounded-2xl md:rounded-[24px] px-6 py-4 md:px-8 md:py-8 flex items-center justify-between shadow-sm transition-all">
             {/* --- MOBILE: Menu Toggle --- */}

@@ -15,7 +15,7 @@ const NewDrops = () => {
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <section className="w-full px-4  py-6 md:py-24 bg-[#F5F5F5]  font-rubik">
+    <section className="w-full px-4  py-6 md:py-24 bg-[#E7E7E3]  font-rubik">
       <Container>
         {/* Header with Title and Button */}
         <div className="flex items-center md:items-end justify-between mb-6 md:mb-12 gap-x-2 md:gap-6">
