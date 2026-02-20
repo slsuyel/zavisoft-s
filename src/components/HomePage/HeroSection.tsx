@@ -16,7 +16,18 @@ const HeroSection = () => {
 
       {/* Main Feature Card */}
       <Container className="relative group">
-        <div className="relative rounded-[32px] md:rounded-[64px] overflow-hidden bg-[#E7E7E3] min-h-[500px] md:h-[800px]">
+        <div
+          className=" relative 
+  w-full 
+  max-w-[358px] 
+  md:max-w-none 
+  h-[382px] 
+  md:h-[800px] 
+  rounded-[24px] 
+  md:rounded-[64px] 
+  overflow-hidden 
+  bg-[#E7E7E3]"
+        >
           {/* Tag */}
           <div className="absolute top-0 mt-20 left-0 bg-[#232321] text-white p-2 lg:p-6 [writing-mode:vertical-lr] rotate-180 text-xs font-medium tracking-widest uppercase rounded-l-lg lg:rounded-l-2xl">
             Nike product of the year
@@ -33,14 +44,14 @@ const HeroSection = () => {
 
           {/* Text Content Overlay */}
           <div className="absolute bottom-8 left-8 md:bottom-16 md:left-16 ">
-            <h2 className="text-2xl md:text-[74px] font-bold text-white uppercase  mb-4">
+            <h2 className="text-2xl md:text-[74px] font-bold text-white uppercase  mb-1.5 md:mb-4">
               Nike Air Max
             </h2>
-            <p className="text-white/90 text-sm md:text-2xl font-open-sans mb-6 max-w-md">
+            <p className="text-white/90 text-sm md:text-2xl font-open-sans mb-2 md:mb-6 max-w-[200px] md:max-w-md">
               Nike introducing the new air max for everyone's comfort
             </p>
             <Link href="/" className="cursor-pointer">
-              <button className="bg-[#437EF7] cursor-pointer text-white px-8 py-4 rounded-lg font-bold uppercase hover:bg-blue-700 transition-colors">
+              <button className="bg-[#437EF7] font-inter cursor-pointer text-white px-4 py-1.5 md:px-8 md:py-4 rounded-lg  font-semibold md:font-bold uppercase hover:bg-blue-700 transition-colors">
                 Shop Now
               </button>
             </Link>
