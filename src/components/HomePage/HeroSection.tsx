@@ -16,18 +16,7 @@ const HeroSection = () => {
 
       {/* Main Feature Card */}
       <Container className="relative group">
-        <div
-          className=" relative 
-  w-full 
-  max-w-[358px] 
-  md:max-w-none 
-  h-[382px] 
-  md:h-[800px] 
-  rounded-[24px] 
-  md:rounded-[64px] 
-  overflow-hidden 
-  bg-[#E7E7E3]"
-        >
+        <div className=" relative w-full  md:max-w-none h-[382px] md:h-[800px] rounded-[24px] md:rounded-[64px] overflow-hidden    bg-[#E7E7E3]">
           {/* Tag */}
           <div className="absolute top-0 mt-20 left-0 bg-[#232321] text-white p-2 lg:p-6 [writing-mode:vertical-lr] rotate-180 text-xs font-medium tracking-widest uppercase rounded-l-lg lg:rounded-l-2xl">
             Nike product of the year

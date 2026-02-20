@@ -14,7 +14,7 @@ const Header = () => {
     <>
       <header className="w-full px-4 py-4 md:py-8 bg-[#E7E7E3] font-rubik">
         <Container>
-          <div className="bg-white rounded-2xl md:rounded-[24px] px-6 py-4 md:px-8 md:py-8 flex items-center justify-between shadow-sm transition-all">
+          <div className="bg-white rounded-xl md:rounded-[24px]  p-4 md:px-8 md:py-8 flex items-center justify-between shadow-sm transition-all">
             {/* --- MOBILE: Menu Toggle --- */}
             <div className="flex md:hidden flex-1">
               <button
@@ -29,7 +29,7 @@ const Header = () => {
             {/* --- DESKTOP: Navigation --- */}
             <nav className="hidden md:flex items-center gap-8 flex-1">
               <Link
-                href="/"
+                href="#new-drops"
                 className="font-bold text-sm lg:text-base flex items-center gap-1 hover:text-blue-600 transition-colors"
               >
                 New Drops <Flame size={16} className="text-orange-500" />
@@ -128,7 +128,7 @@ const Header = () => {
 
       {/* --- MOBILE SIDEBAR DRAWER --- */}
       <div
-        className={`fixed inset-0 z-50 bg-black/50 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-50 font-rubik bg-black/50 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
           isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsMenuOpen(false)}
@@ -148,7 +148,7 @@ const Header = () => {
 
           <nav className="flex flex-col gap-6">
             <Link
-              href="/"
+              href="#new-drops"
               className="text-lg font-bold flex items-center gap-2"
             >
               New Drops <Flame size={18} className="text-orange-500" />
@@ -161,7 +161,7 @@ const Header = () => {
             </div>
           </nav>
 
-          <div className="absolute bottom-8 left-6 right-6">
+          <div className="absolute bottom-8 left-6 right-6 ">
             <button className="w-full flex items-center justify-center gap-2 border-2 border-black py-3 rounded-xl font-bold">
               <Search size={20} /> Search Store
             </button>
