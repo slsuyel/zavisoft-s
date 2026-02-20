@@ -102,7 +102,7 @@ const RelatedProducts = () => {
               className={`w-12 h-12 flex items-center justify-center rounded-lg transition-all ${
                 canScrollPrev
                   ? "bg-[#232321] text-white hover:bg-black"
-                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                  : "bg-gray-400  text-white cursor-not-allowed"
               }`}
             >
               <ChevronLeft size={24} />
@@ -114,7 +114,7 @@ const RelatedProducts = () => {
               className={`w-12 h-12 flex items-center justify-center rounded-lg transition-all ${
                 canScrollNext
                   ? "bg-[#232321] text-white hover:bg-black"
-                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                  : "bg-gray-400  text-white cursor-not-allowed"
               }`}
             >
               <ChevronRight size={24} />
