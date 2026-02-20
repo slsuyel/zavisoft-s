@@ -7,6 +7,7 @@ import Container from "@/components/Common/Container";
 import ProductCard from "./ProductCard";
 import { useGetProductsQuery } from "../Redux/RTK/productApi";
 import { TProduct } from "@/constants/product.type";
+import { Skeleton } from "../ui/skeleton";
 
 const RelatedProducts = () => {
   const { data: products, isLoading } = useGetProductsQuery({
@@ -51,7 +52,38 @@ const RelatedProducts = () => {
     emblaApi.on("reInit", onSelect);
   }, [emblaApi, onSelect]);
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <section className="w-full py-12 md:py-20 bg-[#F5F5F5] overflow-hidden">
+        <Container>
+          <div className="flex items-center justify-between mb-8 px-4 md:px-0">
+            <Skeleton className="h-8 md:h-12 w-48 md:w-64 rounded-lg bg-gray-200" />
+            <div className="flex gap-2">
+              <Skeleton className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-gray-200" />
+              <Skeleton className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-gray-200" />
+            </div>
+          </div>
+
+          <div className="overflow-hidden px-4 md:px-0">
+            <div className="flex -ml-4">
+              {[...Array(4)].map((_, index) => (
+                <div
+                  key={index}
+                  className="flex-[0_0_85%] min-w-0 pl-4 sm:flex-[0_0_50%] lg:flex-[0_0_25%]"
+                >
+                  <div className="flex flex-col gap-4 w-full max-w-[318px]">
+                    <Skeleton className="aspect-318/350 w-full rounded-[28px] bg-gray-200" />
+                    <div className="flex flex-col gap-4 px-2">
+                      <Skeleton className="h-8 w-3/4 rounded-lg bg-gray-200" />
+                      <Skeleton className="h-12 w-full rounded-2xl bg-gray-200" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+    );
   }
   return (
     <section className="w-full py-12 md:py-20 bg-[#F5F5F5]  overflow-hidden">
