@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Heart } from "lucide-react";
+import { Heart, AlertCircle } from "lucide-react";
 import Container from "@/components/Common/Container";
 import RelatedProducts from "@/components/ProductPage/RelatedProducts";
 import { useParams } from "next/navigation";
@@ -15,6 +15,7 @@ import {
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Skeleton } from "@/components/ui/skeleton";
+import Link from "next/link";
 
 const ProductPage = () => {
   const { slug } = useParams();
@@ -90,7 +91,28 @@ const ProductPage = () => {
   }
 
   if (error) {
-    return <div>Error...</div>;
+    return (
+      <div className="bg-[#F5F5F5] min-h-screen flex items-center justify-center">
+        <Container>
+          <div className="flex flex-col items-center justify-center gap-4 py-20 text-center">
+            <div className="bg-red-50 p-6 rounded-full">
+              <AlertCircle size={48} className="text-red-500" />
+            </div>
+            <h2 className="text-2xl font-bold text-[#232321]">
+              Oops! Something went wrong.
+            </h2>
+            <p className="text-gray-500 max-w-md">
+              We couldn't load the product details.
+            </p>
+            <Link href="/">
+              <button className="mt-4 cursor-pointer bg-[#232321] text-white px-8 py-3 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-black transition-colors">
+                Go to Home
+              </button>
+            </Link>
+          </div>
+        </Container>
+      </div>
+    );
   }
 
   const displayImages = product?.images?.slice(0, 4) || [];
@@ -109,8 +131,8 @@ const ProductPage = () => {
                   className="aspect-square bg-[#ECEEF0]  overflow-hidden"
                 >
                   <Image
-                    width={500}
-                    height={500}
+                    width={400}
+                    height={400}
                     src={img}
                     alt="Product Detail"
                     className="w-full h-full object-cover"
@@ -128,8 +150,8 @@ const ProductPage = () => {
                       <CarouselItem key={index}>
                         <div className="w-full h-full aspect-square">
                           <Image
-                            width={500}
-                            height={500}
+                            width={400}
+                            height={400}
                             src={img}
                             alt={`Product View ${index + 1}`}
                             className="w-full h-full object-cover"
