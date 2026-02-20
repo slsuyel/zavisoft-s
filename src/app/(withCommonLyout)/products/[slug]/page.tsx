@@ -1,21 +1,43 @@
 "use client";
-import React, { useState } from "react";
-import { Heart, ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Heart } from "lucide-react";
 import Container from "@/components/Common/Container";
 import RelatedProducts from "@/components/ProductPage/RelatedProducts";
 import { useParams } from "next/navigation";
 import { useGetProductBySlugQuery } from "@/components/Redux/RTK/productApi";
 import { TProduct } from "@/constants/product.type";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const ProductPage = () => {
   const { slug } = useParams();
   const { data, isLoading, error } = useGetProductBySlugQuery(slug);
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
 
   const product: TProduct = data;
   const [selectedSize, setSelectedSize] = useState(38);
   const [selectedColor, setSelectedColor] = useState("navy");
 
   const sizes = [38, 39, 40, 41, 42, 43, 44, 45, 46, 47];
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -25,6 +47,8 @@ const ProductPage = () => {
     return <div>Error...</div>;
   }
 
+  const displayImages = product?.images?.slice(0, 4) || [];
+
   return (
     <div className="bg-[#F5F5F5] min-h-screen py-10 ">
       <Container>
@@ -32,13 +56,15 @@ const ProductPage = () => {
           {/* --- LEFT: IMAGE GRID (Desktop: 7/12 cols) --- */}
           <div className="lg:col-span-7">
             {/* Desktop Grid Layout */}
-            <div className="hidden md:grid grid-cols-2 gap-4">
+            <div className="hidden md:grid grid-cols-2 gap-4  rounded-[48px] overflow-auto">
               {product.images.map((img, idx) => (
                 <div
                   key={idx}
-                  className="aspect-square bg-[#ECEEF0] rounded-[32px] overflow-hidden"
+                  className="aspect-square bg-[#ECEEF0]  overflow-hidden"
                 >
-                  <img
+                  <Image
+                    width={500}
+                    height={500}
                     src={img}
                     alt="Product Detail"
                     className="w-full h-full object-cover"
@@ -48,31 +74,61 @@ const ProductPage = () => {
             </div>
 
             {/* Mobile Carousel View */}
-            <div className="md:hidden relative aspect-square bg-[#ECEEF0] rounded-[32px] overflow-hidden">
-              <img
-                src={product.images[0]}
-                alt="Product Main"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-                <div className="w-2 h-2 bg-[#437EF7] rounded-full" />
-                <div className="w-2 h-2 bg-gray-300 rounded-full" />
-                <div className="w-2 h-2 bg-gray-300 rounded-full" />
-                <div className="w-2 h-2 bg-gray-300 rounded-full" />
+            <div className="md:hidden">
+              <div className="relative aspect-square bg-[#ECEEF0] rounded-[32px] overflow-hidden">
+                <Carousel setApi={setApi} className="w-full h-full">
+                  <CarouselContent>
+                    {displayImages.map((img, index) => (
+                      <CarouselItem key={index}>
+                        <div className="w-full h-full aspect-square">
+                          <Image
+                            width={500}
+                            height={500}
+                            src={img}
+                            alt={`Product View ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
+
+                {/* Dots Indicator */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                  {displayImages.map((_, index) => (
+                    <div
+                      key={index}
+                      className={cn(
+                        "w-2 h-2 rounded-full transition-colors",
+                        current === index + 1 ? "bg-[#437EF7]" : "bg-gray-300",
+                      )}
+                    />
+                  ))}
+                </div>
               </div>
+
               {/* Mobile Thumbnails below main image */}
               <div className="flex gap-2 mt-4 overflow-x-auto pb-2">
-                {product.images.map((img, idx) => (
-                  <div
+                {displayImages.map((img, idx) => (
+                  <button
                     key={idx}
-                    className="w-20 h-20 shrink-0 bg-white rounded-xl overflow-hidden border-2 border-transparent hover:border-[#437EF7]"
+                    onClick={() => api?.scrollTo(idx)}
+                    className={cn(
+                      "w-20 h-20 shrink-0 bg-white rounded-xl overflow-hidden border-2 transition-colors",
+                      current === idx + 1
+                        ? "border-[#437EF7]"
+                        : "border-transparent hover:border-[#437EF7]",
+                    )}
                   >
-                    <img
+                    <Image
+                      width={100}
+                      height={100}
                       src={img}
                       alt="thumb"
                       className="w-full h-full object-cover"
                     />
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
