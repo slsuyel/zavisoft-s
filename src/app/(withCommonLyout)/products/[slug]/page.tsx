@@ -139,9 +139,9 @@ const ProductPage = () => {
   const displayImages = product?.images?.slice(0, 4) || [];
 
   return (
-    <div className="bg-[#E7E7E3] min-h-screen py-10  font-rubik">
+    <div className="bg-[#E7E7E3] min-h-screen py-2 md:py-10  font-rubik">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 px-4 md:px-0">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 px-4 md:px-0">
           {/* --- LEFT: IMAGE GRID (Desktop: 7/12 cols) --- */}
           <div className="lg:col-span-7">
             {/* Desktop Grid Layout */}
@@ -164,7 +164,7 @@ const ProductPage = () => {
 
             {/* Mobile Carousel View */}
             <div className="md:hidden">
-              <div className="relative aspect-square bg-[#ECEEF0] rounded-[32px] overflow-hidden">
+              <div className="relative aspect-square bg-[#ECEEF0] rounded-[16px] overflow-hidden">
                 <Carousel setApi={setApi} className="w-full h-full">
                   <CarouselContent>
                     {displayImages.map((img, index) => (
@@ -198,13 +198,13 @@ const ProductPage = () => {
               </div>
 
               {/* Mobile Thumbnails below main image */}
-              <div className="flex gap-2 mt-4 overflow-x-auto pb-2">
+              <div className="flex gap-2 mt-4 overflow-x-auto md:pb-2">
                 {displayImages.map((img, idx) => (
                   <button
                     key={idx}
                     onClick={() => api?.scrollTo(idx)}
                     className={cn(
-                      "w-20 h-20 shrink-0 bg-white rounded-xl overflow-hidden border-2 transition-colors",
+                      "w-20 h-20 shrink-0 bg-white rounded-lg overflow-hidden border-2 transition-colors",
                       current === idx + 1
                         ? "border-[#437EF7]"
                         : "border-transparent hover:border-[#437EF7]",
@@ -224,15 +224,15 @@ const ProductPage = () => {
           </div>
 
           {/* --- RIGHT: PRODUCT INFO (Desktop: 5/12 cols) --- */}
-          <div className="lg:col-span-5 space-y-6 animate-fade-in-up">
-            <div className="space-y-4">
-              <span className="inline-block bg-[#437EF7] text-white text-[10px] font-bold  px-3 py-1 md:py-2 rounded-lg">
+          <div className="lg:col-span-5  animate-fade-in-up">
+            <div className="">
+              <span className="inline-block bg-[#437EF7] text-white text-[10px] font-bold  px-3 py-1 md:py-2 rounded-lg ">
                 New Release
               </span>
-              <h1 className="text-3xl md:text-4xl font-bold text-[#232321] uppercase leading-tight">
+              <h1 className="text-xl md:text-3xl font-bold text-[#232321] uppercase leading-tight my-2 md:my-4">
                 {product.title}
               </h1>
-              <p className="text-[#437EF7] text-2xl font-bold">
+              <p className="text-[#437EF7] text-2xl font-semibold">
                 ${product.price}
               </p>
             </div>
@@ -282,7 +282,7 @@ const ProductPage = () => {
             </div> */}
 
             {/* Actions */}
-            <div className="flex gap-2 pt-4">
+            <div className="flex gap-2 pt-4 mb-2">
               <button
                 onClick={() => handleAddToCart()}
                 className="flex-1 cursor-pointer bg-[#232321] text-white py-4 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-black hover:scale-[1.02] transition-all"
@@ -298,7 +298,7 @@ const ProductPage = () => {
             </button>
 
             {/* Description */}
-            <div className="pt-6 space-y-4">
+            <div className="pt-6 pb-2">
               <h3 className="font-bold uppercase text-sm">About the product</h3>
               <div
                 className="text-gray-500 text-sm font-medium leading-relaxed"

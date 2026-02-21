@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Trash2, Heart, ChevronDown, Minus, Plus } from "lucide-react";
 import Container from "@/components/Common/Container";
 import RelatedProducts from "@/components/ProductPage/RelatedProducts";
@@ -10,8 +10,16 @@ import {
 } from "@/components/Redux/Slice/cartSlice";
 import Link from "next/link";
 import Image from "next/image";
+import { toast } from "sonner";
 
 const CartPage = () => {
+  const [showPromo, setShowPromo] = useState(false);
+  const [promoCode, setPromoCode] = useState("");
+
+  const handleApplyPromo = () => {
+    // Logic to validate code would go here
+    console.log("Applying code:", promoCode);
+  };
   const { items, totalAmount } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
@@ -156,7 +164,17 @@ const CartPage = () => {
 
                       {/* Actions */}
                       <div className="flex items-center gap-4">
-                        <button className="text-[#232321] hover:text-[#437EF7] transition">
+                        <button
+                          onClick={() =>
+                            toast.warning(
+                              "Wishlist functionality coming soon",
+                              {
+                                position: "bottom-left",
+                              },
+                            )
+                          }
+                          className="text-[#232321] hover:text-[#437EF7] transition"
+                        >
                           <svg
                             className="w-6 h-6 md:w-8 md:h-8 cursor-pointer"
                             width="32"
@@ -264,9 +282,41 @@ const CartPage = () => {
                 <span>Checkout</span>
               </button>
 
-              <button className="w-full text-[#232321] py-4 text-base md:text-xl font-black  flex justify-start underline underline-offset-8  md:py-6 tracking-widest hover:text-[#437EF7] transition-colors">
-                Use a promo code
-              </button>
+              {/* Promo Code Section */}
+              <div className="mt-4">
+                {!showPromo ? (
+                  <button
+                    onClick={() => setShowPromo(true)}
+                    className="w-full cursor-pointer text-[#232321] py-4 text-base md:text-xl font-black flex justify-start underline underline-offset-8 md:py-6 tracking-widest hover:text-[#437EF7] transition-colors"
+                  >
+                    Use a promo code
+                  </button>
+                ) : (
+                  <div className="flex flex-col gap-3 py-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={promoCode}
+                        onChange={(e) => setPromoCode(e.target.value)}
+                        placeholder="ENTER CODE"
+                        className="flex-1 bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#437EF7] uppercase font-bold"
+                      />
+                      <button
+                        onClick={handleApplyPromo}
+                        className="bg-[#232321]  text-white px-6 py-2 rounded-lg font-bold text-xs uppercase hover:bg-black transition-colors"
+                      >
+                        Apply
+                      </button>
+                    </div>
+                    <button
+                      onClick={() => setShowPromo(false)}
+                      className="text-xs text-gray-500 underline text-left hover:text-red-500"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
